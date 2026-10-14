@@ -35,7 +35,37 @@ def get_access_token() -> str:
 
 ###################################### SEGUNDO PASO PARA PODER VER LAS CONSULTAS ################################################
 
+## Ahora vamos a limpiar la respuesta que nos da
+def _normalize_result(payload: dict) -> dict:
+    results = payload.get("results")
+    if not isinstance(results, list) or not results:
+        raise RuntimeError("Power BI no devolvió resultados.")
+
+    first_result = results[0]
+    if first_result.get("error"):
+        raise RuntimeError(f"La consulta DAX falló: {first_result['error']}")
+
+    tables = first_result.get("tables") or []
+    if not tables:
+        return {"rows": [], "row_count": 0, "truncated": False}
+
+    rows = tables[0].get("rows") or []
+    truncated = len(rows) > config.RESULT_MAX_ROWS        
+    return {
+        "rows": rows[:config.RESULT_MAX_ROWS],             
+        "row_count": min(len(rows), config.RESULT_MAX_ROWS),               
+        "truncated": truncated,
+    }
+
+
+
 def execute_query(dax_query: str) -> dict:
+    dax_query = dax_query.strip() #comprobación de si es un query correctamente formado
+    if not dax_query:
+        raise RuntimeError("dax_query es obligatorio.")
+    if "EVALUATE" not in dax_query.upper():
+        raise RuntimeError("dax_query debe contener una sentencia EVALUATE.")
+
     token = get_access_token()
     url = (
         f"{POWERBI_API_ROOT}/groups/{config.WORKSPACE_ID}"
@@ -56,11 +86,4 @@ def execute_query(dax_query: str) -> dict:
         raise RuntimeError(
             f"Power BI devolvió HTTP {response.status_code}: {response.text[:500]}"
         )
-    return response.json()
-
-
-
-
-
-
-
+    return _normalize_result(response.json())
