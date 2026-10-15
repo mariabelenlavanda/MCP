@@ -79,3 +79,22 @@ def describe_table_schema(
 
 # py -c "from src.mcp_server import list_available_tables; print(list_available_tables())"
 # py -c "from src.mcp_server import describe_table_schema; print(describe_table_schema('Medidas'))"
+
+
+############ VAMOS CON LA CAPA 3: LAS HERRAMIENTAS YA LAS TENEMOS EN PYTHON Y AHORA FALTA QUE SE PUBLIQUEN
+# POR HTTP PARA QUE EL CLIENTE MCP SE PUEDA CONECTAR ###################
+from starlette.requests import Request 
+from starlette.responses import JSONResponse, Response
+from starlette.routing import Route
+
+
+async def _health_handler(request: Request) -> JSONResponse | Response:
+    if request.method == "HEAD":
+        return Response(status_code=200)
+    return JSONResponse({"status": "ok"})
+
+
+def create_app():
+    app = mcp.streamable_http_app()
+    app.routes.insert(0, Route("/health", _health_handler, methods=["GET", "HEAD"]))
+    return app
