@@ -3,9 +3,13 @@
 import time
 
 import httpx
+
+
+
 import msal
 
 from src import config
+from src.powerbi_definition import parse_semantic_model_definition
 
 ##################################### PRIMERO VAMOS A COGER EL TOKEN DE CADA PERSONA #############################################
 # Esta función hay que adoptarla para que funcione con lo que tenemos nosotros en el config
@@ -162,15 +166,16 @@ def execute_query(dax_query: str) -> dict:
     return _normalize_result(response.json())
 
 ############ VER LA LISTA DE LAS TABLAS #######################
+def _get_schema() -> dict:
+    return parse_semantic_model_definition(get_model_definition())
+
 def list_tables() -> list[dict]:
-    result = execute_query("EVALUATE INFO.VIEW.TABLES()")
+    schema = _get_schema()
     tables = []
-    for row in result["rows"]:
-        if row["[IsHidden]"]:                     
-            continue
+    for t in schema["tables"]:               
         tables.append({
-            "name": row["[Name]"],
-            "description": row.get("[Description]"),  
+            "name": t["name"],
+            "description": t.get("description"),
         })
     return tables
 
@@ -181,31 +186,31 @@ mantuve el formato de salida del original.”
 """
 
 def describe_table(table_name: str) -> dict:
-    columns_result = execute_query("EVALUATE INFO.VIEW.COLUMNS()")
-    measures_result = execute_query("EVALUATE INFO.VIEW.MEASURES()")
+    schema = _get_schema()
 
-    columns = []
-    for row in columns_result["rows"]:
-        if row["[Table]"] != table_name or row["[IsHidden]"]:
-            continue
-        columns.append({
-            "name":row["[Name]"],
-            "data_type": row["[DataType]"],
-            "description": row.get("[Description]"),
-        })
+    table = None
+    for t in schema["tables"]:
+        if t["name"] == table_name:
+            table = t
+    if table is None:
+        raise RuntimeError(
+            f"La tabla '{table_name}' no existe. Usa list_available_tables."
+        )
 
     measures = []
-    for row in measures_result["rows"]:
-        if row["[Table]"] != table_name or row["[IsHidden]"]:   
-            continue
-        measures.append({
-            "name": row["[Name]"],
-            "data_type": row["[DataType]"],
-            "description": row.get("[Description]"),
-        })
+    for m in schema["measures"]:
+        if m["table"] == table_name:       
+            measures.append(m)
 
-    return {"table": table_name, "columns": columns, "measures": measures}
+    relationships = []
+    for r in schema["relationships"]:
+        if r["from"].startswith(f"{table_name}[") or r["to"].startswith(f"{table_name}["):
+            relationships.append(r)
 
-#py -c "from src.powerbi_client import describe_table; print(describe_table('Medidas'))"
-#py -c "from src.powerbi_client import describe_table; print(describe_table('occ_flights'))"
-#py -c "from src.powerbi_client import list_tables; print(list_tables())"
+    return {
+        "table": table_name,
+        "columns": table["columns"],
+        "measures": measures,
+        "relationships": relationships,
+    }
+
