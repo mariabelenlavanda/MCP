@@ -165,6 +165,23 @@ def _compact_model(
         payload["description"] = model_description
     return payload
 
+def measure_expressions(envelope: dict[str, Any]) -> list[dict[str, Any]]:
+    """Nombre, tabla y expresión DAX de las medidas visibles."""
+    model = _tmsl_model(_first_tmsl_model(decode_definition_parts(envelope)))
+    out = []
+    for table in model.get("tables") or []:
+        for measure in table.get("measures") or []:
+            if measure.get("isHidden"):
+                continue
+            expression = measure.get("expression")      
+            if isinstance(expression, list):
+                expression = "\n".join(str(line) for line in expression)
+            out.append({
+                "name": measure.get("name"),
+                "table": table.get("name"),
+                "expression": expression,
+            })
+    return out
 
 def _relationship_entry(relationship: Any) -> dict[str, str] | None:
     if isinstance(relationship, str):
@@ -198,5 +215,13 @@ def _is_auto_date_table(name: str) -> bool:
 def _optional_text(value: Any) -> str | None:
     if value is None:
         return None
+    if isinstance(value, list):
+        value = "\n".join(str(line) for line in value)
     text = str(value).strip()
     return text or None
+
+
+##### COMPROBACION DE QUE FUNCOINA
+#py -c "from src.powerbi_client import get_model_definition as g; from src.powerbi_definition import parse_semantic_model_definition as p; m = p(g()); print([t['name'] for t in m['tables']]); print(len(m['measures']), 'medidas;', len(m['relationships']), 'relaciones')"
+#vAMOS A VER LAS RELACIONES
+#py -c "from src.powerbi_client import get_model_definition as g; from src.powerbi_definition import parse_semantic_model_definition as p; print(p(g())['relationships'])"

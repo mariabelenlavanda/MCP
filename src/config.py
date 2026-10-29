@@ -7,7 +7,7 @@ load_dotenv()
 def _required(name: str) -> str: #basada en la funcion de powerbi.py llamada required_env
     value = os.environ.get(name, "").strip()
     if not value:
-        raise RuntimeError(f"Variable missinsg {name}")
+        raise RuntimeError(f"Variable missinsg {name}") #preguntar la diferencia entre 
     return value
 
 TENANT_ID = _required("POWERBI_TENANT_ID")
@@ -22,3 +22,5 @@ HOST = os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT", "8001"))   #preguntar si hace falta poner lo de entero para que lea un numero y no sea un texto             
 HTTP_TIMEOUT_SECONDS = float(os.environ.get("POWERBI_HTTP_TIMEOUT_SECONDS", "60"))
 RESULT_MAX_ROWS = int(os.environ.get("POWERBI_RESULT_MAX_ROWS", "1000"))
+
+#PREGUNTAR SI LO DE HOST, PORT,ETC SE PUEDE COGER COMO LOS DE TENANT ID CON LA FUNCION REQUIRED YA QUE ESTÁ EN .env O SI TENGO QUE COGERLO ASÍ

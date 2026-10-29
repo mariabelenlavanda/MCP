@@ -23,6 +23,11 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
 from pydantic import Field
+from starlette.requests import Request 
+from starlette.responses import JSONResponse, Response
+from starlette.routing import Route
+
+
 
 from src import powerbi_client
 
@@ -55,6 +60,7 @@ def query_powerbi_dax(
 
 @mcp.tool(title="List available Power BI tables", annotations=_READ_ONLY)
 def list_available_tables() -> str:
+
     """Lista las tablas del modelo semántico de Power BI con su descripción.
 
     Es el primer paso: llámala antes de escribir cualquier consulta DAX.
@@ -77,15 +83,37 @@ def describe_table_schema(
     """
     return _dumps(powerbi_client.describe_table(table_name))     
 
+@mcp.tool(title="Get the DAX of a Power BI measure", annotations=_READ_ONLY)
+def dax_measure(
+    measure_name: Annotated[
+        str,
+        Field(description="Nombre exacto de una medida devuelto por describe_table_schema."),
+    ],
+) -> str:
+    """Devuelve la fórmula DAX con la que se calcula una medida del modelo.
+
+    Úsala cuando pregunten cómo se calcula un indicador, o para entender qué
+    filtros aplica una medida antes de escribir otra consulta.
+    """
+    return _dumps(powerbi_client.get_measure_dax(measure_name))     
+
+
+
+
+#@mcp.tool(title="Get a preview of the values", annotations=_READ_ONLY)
+#def preview_table(table_name,column_name) -> str:
+
+
+#@mcp.tool(title="List of all the measures that exist", annotations=_READ_ONLY)
+#def list_measures(table_name,column_name) -> str:
+
+
 # py -c "from src.mcp_server import list_available_tables; print(list_available_tables())"
 # py -c "from src.mcp_server import describe_table_schema; print(describe_table_schema('Medidas'))"
 
 
-############ VAMOS CON LA CAPA 3: LAS HERRAMIENTAS YA LAS TENEMOS EN PYTHON Y AHORA FALTA QUE SE PUBLIQUEN
+############ VAMOS CON LA TERCERA CAPA: LAS HERRAMIENTAS YA LAS TENEMOS EN PYTHON Y AHORA FALTA QUE SE PUBLIQUEN
 # POR HTTP PARA QUE EL CLIENTE MCP SE PUEDA CONECTAR ###################
-from starlette.requests import Request 
-from starlette.responses import JSONResponse, Response
-from starlette.routing import Route
 
 
 async def _health_handler(request: Request) -> JSONResponse | Response:
@@ -98,3 +126,4 @@ def create_app():
     app = mcp.streamable_http_app()
     app.routes.insert(0, Route("/health", _health_handler, methods=["GET", "HEAD"]))
     return app
+

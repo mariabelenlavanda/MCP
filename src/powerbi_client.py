@@ -1,15 +1,11 @@
 #este es el archivo que va a hablar con PowerBI
 
 import time
-
 import httpx
-
-
-
 import msal
 
 from src import config
-from src.powerbi_definition import parse_semantic_model_definition
+from src.powerbi_definition import parse_semantic_model_definition, measure_expressions
 
 ##################################### PRIMERO VAMOS A COGER EL TOKEN DE CADA PERSONA #############################################
 # Esta función hay que adoptarla para que funcione con lo que tenemos nosotros en el config
@@ -58,7 +54,16 @@ def get_model_definition_raw(format: str = "TMSL") -> httpx.Response:
         headers={"Authorization": f"Bearer {token}"},
         params={"format": format},
     )
-    
+
+def get_measure_dax(measure_name: str) -> dict:
+    for m in measure_expressions(get_model_definition()):
+        if m["name"] == measure_name:
+            return m
+    raise RuntimeError(
+        f"La medida '{measure_name}' no existe. "
+        "Usa describe_table_schema con la tabla que contiene las medidas."
+    )
+
 _LRO_SLEEP_CAP_SECONDS = 5
 
 
@@ -110,6 +115,7 @@ def get_model_definition(format: str = "TMSL") -> dict:
             raise RuntimeError(f"Fabric: la operación terminó como {status}: {state_response.text[:500]}")
         retry_after = _retry_after_seconds(state_response) or 1
     raise RuntimeError("Tiempo agotado esperando a Fabric.")
+
 ###################################### SEGUNDO PASO PARA PODER VER LAS CONSULTAS ################################################
 
 ## Ahora vamos a limpiar la respuesta que nos da
@@ -133,7 +139,6 @@ def _normalize_result(payload: dict) -> dict:
         "row_count": min(len(rows), config.RESULT_MAX_ROWS),               
         "truncated": truncated,
     }
-
 
 
 def execute_query(dax_query: str) -> dict:
@@ -214,3 +219,7 @@ def describe_table(table_name: str) -> dict:
         "relationships": relationships,
     }
 
+#py -c "from src.powerbi_client import list_tables; print([t['name'] for t in list_tables()])" NOS DA LOS NOMBRES DE LAS CUATRO TABLAS
+#py -c "from src.powerbi_client import describe_table; print(describe_table('Medidas'))" DESCRIPCION DE LAS MEDIDAS
+#py -c "from src.powerbi_client import describe_table; print(describe_table('occ_flights')['relationships'])" EJEMPLO DE RELACION ENTRE TABLAS
+#py -c "from src.powerbi_client import describe_table; describe_table('inventada')"
