@@ -5,7 +5,7 @@ import httpx
 import msal
 
 from src import config
-from src.powerbi_definition import parse_semantic_model_definition, measure_expressions
+from src.powerbi_definition import  measure_expressions
 
 ##################################### PRIMERO VAMOS A COGER EL TOKEN DE CADA PERSONA #############################################
 # Esta función hay que adoptarla para que funcione con lo que tenemos nosotros en el config
@@ -171,55 +171,68 @@ def execute_query(dax_query: str) -> dict:
     return _normalize_result(response.json())
 
 ############ VER LA LISTA DE LAS TABLAS #######################
-def _get_schema() -> dict:
-    return parse_semantic_model_definition(get_model_definition())
+
 
 def list_tables() -> list[dict]:
-    schema = _get_schema()
+    result = execute_query("EVALUATE INFO.VIEW.TABLES()")
     tables = []
-    for t in schema["tables"]:               
+    for row in result["rows"]:
+        if row["[IsHidden]"]:
+            continue
         tables.append({
-            "name": t["name"],
-            "description": t.get("description"),
+            "name": row["[Name]"],
+            "description": row.get("[Description]"),
         })
     return tables
 
-"""
-“El repo original obtiene el esquema con la API de Fabric, que exige permisos de escritura sobre el modelo. 
-Probé alternativas y INFO.VIEW.* funciona con permisos de solo lectura, así que lo sustituí por consultas DAX y 
-mantuve el formato de salida del original.”
-"""
 
 def describe_table(table_name: str) -> dict:
-    schema = _get_schema()
+    columns_result = execute_query("EVALUATE INFO.VIEW.COLUMNS()")
+    measures_result = execute_query("EVALUATE INFO.VIEW.MEASURES()")
 
-    table = None
-    for t in schema["tables"]:
-        if t["name"] == table_name:
-            table = t
-    if table is None:
-        raise RuntimeError(
-            f"La tabla '{table_name}' no existe. Usa list_available_tables."
-        )
+    columns = []
+    for row in columns_result["rows"]:
+        if row["[Table]"] != table_name or row["[IsHidden]"]:
+            continue
+        columns.append({
+            "name": row["[Name]"],
+            "data_type": row["[DataType]"],
+            "description": row.get("[Description]"),
+        })
 
     measures = []
-    for m in schema["measures"]:
-        if m["table"] == table_name:       
-            measures.append(m)
+    for row in measures_result["rows"]:
+        if row["[Table]"] != table_name or row["[IsHidden]"]:
+            continue
+        measures.append({
+            "name": row["[Name]"],
+            "data_type": row["[DataType]"],
+            "description": row.get("[Description]"),
+        })
 
+    relationships_result = execute_query("EVALUATE INFO.VIEW.RELATIONSHIPS()")
     relationships = []
-    for r in schema["relationships"]:
-        if r["from"].startswith(f"{table_name}[") or r["to"].startswith(f"{table_name}["):
-            relationships.append(r)
+    for row in relationships_result["rows"]:
+        if not row["[IsActive]"]:
+            continue
+        if row["[FromTable]"] != table_name and row["[ToTable]"] != table_name:
+            continue
+        relationships.append({
+            "from": f"{row['[FromTable]']}[{row['[FromColumn]']}]",
+            "to": f"{row['[ToTable]']}[{row['[ToColumn]']}]",
+            "from_cardinality": row["[FromCardinality]"],
+            "to_cardinality": row["[ToCardinality]"],
+        })
+
+    if not columns and not measures:
+        raise RuntimeError(
+            f"La tabla '{table_name}' no existe o no tiene columnas ni medidas visibles. "
+            "Usa list_available_tables."
+        )
 
     return {
         "table": table_name,
-        "columns": table["columns"],
+        "columns": columns,
         "measures": measures,
         "relationships": relationships,
     }
-
-#py -c "from src.powerbi_client import list_tables; print([t['name'] for t in list_tables()])" NOS DA LOS NOMBRES DE LAS CUATRO TABLAS
-#py -c "from src.powerbi_client import describe_table; print(describe_table('Medidas'))" DESCRIPCION DE LAS MEDIDAS
-#py -c "from src.powerbi_client import describe_table; print(describe_table('occ_flights')['relationships'])" EJEMPLO DE RELACION ENTRE TABLAS
-#py -c "from src.powerbi_client import describe_table; describe_table('inventada')"

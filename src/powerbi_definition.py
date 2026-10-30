@@ -1,24 +1,10 @@
-"""Convierte la definición TMSL de Fabric en un esquema compacto del modelo.
+"""Extrae las fórmulas DAX de las medidas a partir de la definición TMSL de Fabric.
 
-Adaptado de infrastructure/powerbi_definition.py (repo powerbi-mcp). Solo se queda
-la parte del modelo semántico en formato TMSL: tablas, columnas, medidas y
-relaciones. Los IDs, las expresiones de las medidas y las particiones quedan fuera.
 """
 
 import base64
 import json
 from typing import Any
-
-_AUTO_DATE_PREFIXES = ("LocalDateTable_", "DateTableTemplate_")
-
-
-def parse_semantic_model_definition(envelope: dict[str, Any]) -> dict[str, Any]:
-    """Return tables, columns, measures and relationships from a Fabric envelope."""
-    parts = decode_definition_parts(envelope)
-    tmsl = _first_tmsl_model(parts)
-    if tmsl is not None:
-        return compact_from_tmsl(tmsl)
-    raise ValueError("Fabric returned a semantic model definition without TMSL parts.")
 
 
 def decode_definition_parts(envelope: dict[str, Any]) -> dict[str, str]:
@@ -42,17 +28,6 @@ def decode_definition_parts(envelope: dict[str, Any]) -> dict[str, str]:
             continue
         decoded[path] = text
     return decoded
-
-
-def compact_from_tmsl(document: dict[str, Any]) -> dict[str, Any]:
-    model = _tmsl_model(document)
-    if model is None:
-        raise ValueError("TMSL definition does not contain a model.")
-    return _compact_model(
-        tables=model.get("tables") or [],
-        relationships=model.get("relationships") or [],
-        model_description=_optional_text(model.get("description")),
-    )
 
 
 def _tmsl_model(document: dict[str, Any]) -> dict[str, Any] | None:
@@ -88,83 +63,6 @@ def _first_tmsl_model(parts: dict[str, str]) -> dict[str, Any] | None:
     return None
 
 
-def _compact_model(
-    *,
-    tables: list[dict[str, Any]],
-    relationships: list[Any],
-    model_description: str | None,
-) -> dict[str, Any]:
-    tables_out: list[dict[str, Any]] = []
-    measures_out: list[dict[str, Any]] = []
-
-    for table in tables:
-        if not isinstance(table, dict):
-            continue
-        name = str(table.get("name") or "").strip()
-        if not name or table.get("isHidden") or _is_auto_date_table(name):
-            continue
-
-        columns_out: list[dict[str, Any]] = []
-        for column in table.get("columns") or []:
-            if not isinstance(column, dict):
-                continue
-            column_name = str(column.get("name") or "").strip()
-            if (
-                not column_name
-                or column.get("isHidden")
-                or str(column.get("type") or "").lower() == "rownumber"
-            ):
-                continue
-            entry: dict[str, Any] = {
-                "name": column_name,
-                "data_type": str(
-                    column.get("dataType") or column.get("data_type") or "unknown"
-                ),
-            }
-            description = _optional_text(column.get("description"))
-            if description:
-                entry["description"] = description
-            columns_out.append(entry)
-
-        table_entry: dict[str, Any] = {"name": name, "columns": columns_out}
-        table_description = _optional_text(table.get("description"))
-        if table_description:
-            table_entry["description"] = table_description
-        tables_out.append(table_entry)
-
-        for measure in table.get("measures") or []:
-            if not isinstance(measure, dict):
-                continue
-            measure_name = str(measure.get("name") or "").strip()
-            if not measure_name or measure.get("isHidden"):
-                continue
-            measure_entry: dict[str, Any] = {"name": measure_name, "table": name}
-            description = _optional_text(measure.get("description"))
-            if description:
-                measure_entry["description"] = description
-            folder = _optional_text(measure.get("displayFolder") or measure.get("display_folder"))
-            if folder:
-                measure_entry["display_folder"] = folder
-            data_type = _optional_text(measure.get("dataType") or measure.get("data_type"))
-            if data_type:
-                measure_entry["data_type"] = data_type
-            measures_out.append(measure_entry)
-
-    relationships_out: list[dict[str, str]] = []
-    for relationship in relationships:
-        parsed = _relationship_entry(relationship)
-        if parsed:
-            relationships_out.append(parsed)
-
-    payload: dict[str, Any] = {
-        "tables": tables_out,
-        "measures": measures_out,
-        "relationships": relationships_out,
-    }
-    if model_description:
-        payload["description"] = model_description
-    return payload
-
 def measure_expressions(envelope: dict[str, Any]) -> list[dict[str, Any]]:
     """Nombre, tabla y expresión DAX de las medidas visibles."""
     model = _tmsl_model(_first_tmsl_model(decode_definition_parts(envelope)))
@@ -173,7 +71,7 @@ def measure_expressions(envelope: dict[str, Any]) -> list[dict[str, Any]]:
         for measure in table.get("measures") or []:
             if measure.get("isHidden"):
                 continue
-            expression = measure.get("expression")      
+            expression = measure.get("expression")
             if isinstance(expression, list):
                 expression = "\n".join(str(line) for line in expression)
             out.append({
@@ -182,46 +80,3 @@ def measure_expressions(envelope: dict[str, Any]) -> list[dict[str, Any]]:
                 "expression": expression,
             })
     return out
-
-def _relationship_entry(relationship: Any) -> dict[str, str] | None:
-    if isinstance(relationship, str):
-        return None
-    if not isinstance(relationship, dict):
-        return None
-    if relationship.get("isActive") is False or relationship.get("is_active") is False:
-        return None
-    from_table = str(relationship.get("fromTable") or relationship.get("from_table") or "").strip()
-    from_column = str(
-        relationship.get("fromColumn") or relationship.get("from_column") or ""
-    ).strip()
-    to_table = str(relationship.get("toTable") or relationship.get("to_table") or "").strip()
-    to_column = str(relationship.get("toColumn") or relationship.get("to_column") or "").strip()
-    if from_table and "." in from_table and not from_column:
-        from_table, from_column = from_table.split(".", 1)
-    if to_table and "." in to_table and not to_column:
-        to_table, to_column = to_table.split(".", 1)
-    if not (from_table and from_column and to_table and to_column):
-        return None
-    return {
-        "from": f"{from_table}[{from_column}]",
-        "to": f"{to_table}[{to_column}]",
-    }
-
-
-def _is_auto_date_table(name: str) -> bool:
-    return name.startswith(_AUTO_DATE_PREFIXES)
-
-
-def _optional_text(value: Any) -> str | None:
-    if value is None:
-        return None
-    if isinstance(value, list):
-        value = "\n".join(str(line) for line in value)
-    text = str(value).strip()
-    return text or None
-
-
-##### COMPROBACION DE QUE FUNCOINA
-#py -c "from src.powerbi_client import get_model_definition as g; from src.powerbi_definition import parse_semantic_model_definition as p; m = p(g()); print([t['name'] for t in m['tables']]); print(len(m['measures']), 'medidas;', len(m['relationships']), 'relaciones')"
-#vAMOS A VER LAS RELACIONES
-#py -c "from src.powerbi_client import get_model_definition as g; from src.powerbi_definition import parse_semantic_model_definition as p; print(p(g())['relationships'])"
