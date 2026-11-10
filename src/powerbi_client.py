@@ -31,7 +31,7 @@ def _token_or_raise(result: dict) -> str:
         return token
     code = result.get("error", "token_error")
     description = result.get("error_description", "No error description returned.")
-    raise RuntimeError(f"Falló la autenticación ({code}): {description}")
+    raise RuntimeError(f"Authentication failed ({code}): {description}")
 
 
 def get_access_token() -> str:
@@ -60,8 +60,8 @@ def get_measure_dax(measure_name: str) -> dict:
         if m["name"] == measure_name:
             return m
     raise RuntimeError(
-        f"La medida '{measure_name}' no existe. "
-        "Usa describe_table_schema con la tabla que contiene las medidas."
+        f"The measure '{measure_name}' does not exist. "
+        "Use describe_table_schema with the table that contains the measures."
     )
 
 _LRO_SLEEP_CAP_SECONDS = 5
@@ -89,7 +89,7 @@ def get_model_definition(format: str = "TMSL") -> dict:
         return response.json()
     if response.status_code != 202:
         raise RuntimeError(
-            f"Fabric devolvió HTTP {response.status_code}: {response.text[:500]}"
+            f"Fabric returned HTTP {response.status_code}: {response.text[:500]}"
         )
 
     operation_id = response.headers.get("x-ms-operation-id", "").strip()
@@ -101,20 +101,20 @@ def get_model_definition(format: str = "TMSL") -> dict:
         state_response = _fabric_get(f"{FABRIC_API_ROOT}/operations/{operation_id}")
         if state_response.is_error:
             raise RuntimeError(
-                f"Fabric devolvió HTTP {state_response.status_code}: {state_response.text[:500]}"
+                f"Fabric returned HTTP {state_response.status_code}: {state_response.text[:500]}"
             )
         status = state_response.json().get("status")
         if status == "Succeeded":                    
             result = _fabric_get(f"{FABRIC_API_ROOT}/operations/{operation_id}/result")
             if result.is_error:
                 raise RuntimeError(
-                    f"Fabric devolvió HTTP {result.status_code}: {result.text[:500]}"
+                    f"Fabric returned HTTP {result.status_code}: {result.text[:500]}"
                 )
             return result.json()
         if status in {"Failed", "Cancelled"}:
-            raise RuntimeError(f"Fabric: la operación terminó como {status}: {state_response.text[:500]}")
+            raise RuntimeError(f"Fabric: the operation ended with status {status}: {state_response.text[:500]}")
         retry_after = _retry_after_seconds(state_response) or 1
-    raise RuntimeError("Tiempo agotado esperando a Fabric.")
+    raise RuntimeError("Timed out waiting for Fabric.")
 
 ###################################### SEGUNDO PASO PARA PODER VER LAS CONSULTAS ################################################
 
@@ -122,11 +122,11 @@ def get_model_definition(format: str = "TMSL") -> dict:
 def _normalize_result(payload: dict) -> dict:
     results = payload.get("results")
     if not isinstance(results, list) or not results:
-        raise RuntimeError("Power BI no devolvió resultados.")
+        raise RuntimeError("Power BI returned no results.")
 
     first_result = results[0]
     if first_result.get("error"):
-        raise RuntimeError(f"La consulta DAX falló: {first_result['error']}")
+        raise RuntimeError(f"DAX query failed: {first_result['error']}")
 
     tables = first_result.get("tables") or []
     if not tables:
@@ -146,7 +146,7 @@ def execute_query(dax_query: str) -> dict:
     if not dax_query:
         raise RuntimeError("dax_query es obligatorio.")
     if "EVALUATE" not in dax_query.upper():
-        raise RuntimeError("dax_query debe contener una sentencia EVALUATE.")
+        raise RuntimeError("dax_query must contain an EVALUATE statement.")
 
     token = get_access_token()
     url = (
@@ -166,7 +166,7 @@ def execute_query(dax_query: str) -> dict:
     )
     if response.is_error:
         raise RuntimeError(
-            f"Power BI devolvió HTTP {response.status_code}: {response.text[:500]}"
+            f"Power BI returned HTTP {response.status_code}: {response.text[:500]}"
         )
     return _normalize_result(response.json())
 
@@ -226,8 +226,8 @@ def describe_table(table_name: str) -> dict:
 
     if not columns and not measures:
         raise RuntimeError(
-            f"La tabla '{table_name}' no existe o no tiene columnas ni medidas visibles. "
-            "Usa list_available_tables."
+            f"The table '{table_name}' does not exist or has no visible columns or measures. "
+            "Use list_available_tables."
         )
 
     return {

@@ -64,7 +64,7 @@ def _first_tmsl_model(parts: dict[str, str]) -> dict[str, Any] | None:
 
 
 def measure_expressions(envelope: dict[str, Any]) -> list[dict[str, Any]]:
-    """Nombre, tabla y expresión DAX de las medidas visibles."""
+    """Name, table, and DAX expression of the visible measures."""
     model = _tmsl_model(_first_tmsl_model(decode_definition_parts(envelope)))
     out = []
     for table in model.get("tables") or []:

@@ -1,3 +1,7 @@
+"""
+Archivo para poder sacar la diferencia de tiempo de respuesta entre la APi y el info_view()
+
+"""
 import sys
 import time
 

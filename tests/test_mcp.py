@@ -19,7 +19,7 @@ DEFAULT_DAX = 'EVALUATE ROW("ok", 1)'
 
 
 def _arguments() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Prueba el servidor MCP.")
+    parser = argparse.ArgumentParser(description="MCP server try out")
     parser.add_argument("url", help="Endpoint MCP, incluida la ruta /mcp.")
     parser.add_argument("--table", default="Medidas", help="Tabla a describir.")
     parser.add_argument("--dax", default=DEFAULT_DAX, help="Consulta DAX a ejecutar.")

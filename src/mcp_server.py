@@ -49,22 +49,31 @@ def _dumps(value: Any) -> str:
 def query_powerbi_dax(
     dax_query: Annotated[
         str,
-        Field(description="Una consulta DAX de solo lectura con una sentencia EVALUATE."),
+        Field(description="One read-only DAX query with a single EVALUATE statement."),
     ],
 ) -> str:
-    """Ejecuta una consulta DAX contra el modelo semántico configurado."""
-    result = powerbi_client.execute_query(dax_query)     
+    """Run a read-only DAX query against the semantic model.
+
+    Use the model's measures whenever one exists for what is asked, and do not
+    recalculate their logic from columns. Measures are written in square
+    brackets and can be grouped or filtered, for example:
+    EVALUATE SUMMARIZECOLUMNS(Table[column], "name", [Measure]).
+    Use only tables, columns and measures returned by describe_table_schema.
+    Aggregate results, and use TOPN if you return detail rows.
+    """
+    result = powerbi_client.execute_query(dax_query)
     return _dumps(result)
 
 #py -c "from src.mcp_server import query_powerbi_dax; print(query_powerbi_dax('EVALUATE ROW(\"ok\", 1)'))"
 
 @mcp.tool(title="List available Power BI tables", annotations=_READ_ONLY)
 def list_available_tables() -> str:
+    """List the tables of the Power BI semantic model with their descriptions.
 
-    """Lista las tablas del modelo semántico de Power BI con su descripción.
-
-    Es el primer paso: llámala antes de escribir cualquier consulta DAX.
-    Después usa describe_table_schema con la tabla que te interese.
+    This is the first step. If a table contains measures (indicators that are
+    already calculated), also describe it with describe_table_schema before
+    writing any query, so you can use those measures instead of recalculating
+    their logic.
     """
     return _dumps(powerbi_client.list_tables())      
     
@@ -73,43 +82,32 @@ def list_available_tables() -> str:
 def describe_table_schema(
     table_name: Annotated[
         str,
-        Field(description="Nombre de una tabla devuelto por list_available_tables."),
+        Field(description="Name of a table returned by list_available_tables."),
     ],
 ) -> str:
-    """Devuelve las columnas (nombre, tipo, descripción) y las medidas de una tabla.
+    """Return the columns (name, type, description), the measures and the relationships of a table.
 
-    Usa solo los nombres que aparecen aquí al escribir el DAX. Las medidas se
-    escriben entre corchetes, por ejemplo [Nombre de la medida].
+    Relationships show which other tables it joins to and their cardinality
+    (One or Many). Use it to learn how tables connect before writing a DAX
+    query that spans several of them. Use only the names returned here when
+    writing DAX. Measures are written in square brackets, for example
+    [Measure name].
     """
-    return _dumps(powerbi_client.describe_table(table_name))     
+    return _dumps(powerbi_client.describe_table(table_name))
 
 @mcp.tool(title="Get the DAX of a Power BI measure", annotations=_READ_ONLY)
 def dax_measure(
     measure_name: Annotated[
         str,
-        Field(description="Nombre exacto de una medida devuelto por describe_table_schema."),
+        Field(description="Exact name of a measure returned by describe_table_schema."),
     ],
 ) -> str:
-    """Devuelve la fórmula DAX con la que se calcula una medida del modelo.
+    """Return the DAX formula that defines a measure of the model.
 
-    Úsala cuando pregunten cómo se calcula un indicador, o para entender qué
-    filtros aplica una medida antes de escribir otra consulta.
+    Use it when asked how an indicator is calculated, or to understand which
+    filters a measure applies before writing another query.
     """
-    return _dumps(powerbi_client.get_measure_dax(measure_name))     
-
-
-
-
-#@mcp.tool(title="Get a preview of the values", annotations=_READ_ONLY)
-#def preview_table(table_name,column_name) -> str:
-
-
-#@mcp.tool(title="List of all the measures that exist", annotations=_READ_ONLY)
-#def list_measures(table_name,column_name) -> str:
-
-
-# py -c "from src.mcp_server import list_available_tables; print(list_available_tables())"
-# py -c "from src.mcp_server import describe_table_schema; print(describe_table_schema('Medidas'))"
+    return _dumps(powerbi_client.get_measure_dax(measure_name))   
 
 
 ############ VAMOS CON LA TERCERA CAPA: LAS HERRAMIENTAS YA LAS TENEMOS EN PYTHON Y AHORA FALTA QUE SE PUBLIQUEN

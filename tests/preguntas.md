@@ -40,3 +40,8 @@
   - Esto es como pedir un resumen por lo que se haria con un TOOL de resumen????
 
 
+![alt text](image.png)
+
+
+
+![alt text](image-1.png)
