@@ -13,8 +13,8 @@ def _required(name: str) -> str: #basada en la funcion de powerbi.py llamada req
 TENANT_ID = _required("POWERBI_TENANT_ID")
 CLIENT_ID =  _required("POWERBI_CLIENT_ID")
 CLIENT_SECRET = _required("POWERBI_CLIENT_SECRET")
-WORKSPACE_ID = _required("POWERBI_TEST_WORKSPACE_ID")
-DATASET_ID = _required("POWERBI_TEST_DATASET_ID")
+WORKSPACE_ID = _required("POWERBI_WORKSPACE_ID")
+DATASET_ID = _required("POWERBI_DATASET_ID")
 #REPORT_ID = _required("POWERBI_TEST_REPORT_ID") #preguntar si sobra ya que sirve solo para leer la definición del informe con la API
 
 
