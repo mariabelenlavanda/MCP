@@ -175,7 +175,12 @@ def execute_query(dax_query: str) -> dict:
 
 ############ VER LA LISTA DE LAS TABLAS #######################
 _AUTO_DATE_PREFIXES = ("LocalDateTable_", "DateTableTemplate_")
-
+_API_TYPES = {
+    "dateTime": "Date",
+    "double": "Number",
+    "int64": "Integer",
+    "string": "Text",
+}
 
 def _touches_auto_date(relationship: dict) -> bool:
     return relationship["from"].startswith(_AUTO_DATE_PREFIXES) or relationship["to"].startswith(_AUTO_DATE_PREFIXES)
@@ -290,7 +295,9 @@ def _describe_table_api(table_name: str) -> dict:
         if r["from"].startswith(f"{table_name}[") or r["to"].startswith(f"{table_name}["):
             relationships.append(r)
     relationships = [r for r in relationships if not _touches_auto_date(r)]
-
+    for item in table["columns"] + measures:
+        if "data_type" in item:
+            item["data_type"] = _API_TYPES.get(item["data_type"], item["data_type"])
     return {
         "table": table_name,
         "columns": table["columns"],
