@@ -24,3 +24,6 @@ HTTP_TIMEOUT_SECONDS = float(os.environ.get("POWERBI_HTTP_TIMEOUT_SECONDS", "60"
 RESULT_MAX_ROWS = int(os.environ.get("POWERBI_RESULT_MAX_ROWS", "1000"))
 
 #PREGUNTAR SI LO DE HOST, PORT,ETC SE PUEDE COGER COMO LOS DE TENANT ID CON LA FUNCION REQUIRED YA QUE ESTÁ EN .env O SI TENGO QUE COGERLO ASÍ
+SCHEMA_SOURCE = os.environ.get("POWERBI_SCHEMA_SOURCE", "infoview").strip().lower()
+if SCHEMA_SOURCE not in {"infoview", "api"}:
+    raise RuntimeError("POWERBI_SCHEMA_SOURCE debe ser 'infoview' o 'api'")

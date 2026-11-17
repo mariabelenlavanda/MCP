@@ -5,7 +5,7 @@ import httpx
 import msal
 
 from src import config
-from src.powerbi_definition import  measure_expressions
+from src.powerbi_definition import measure_expressions, parse_semantic_model_definition
 
 ##################################### PRIMERO VAMOS A COGER EL TOKEN DE CADA PERSONA #############################################
 # Esta función hay que adoptarla para que funcione con lo que tenemos nosotros en el config
@@ -63,6 +63,9 @@ def get_measure_dax(measure_name: str) -> dict:
         f"The measure '{measure_name}' does not exist. "
         "Use describe_table_schema with the table that contains the measures."
     )
+
+
+
 
 _LRO_SLEEP_CAP_SECONDS = 5
 
@@ -171,9 +174,14 @@ def execute_query(dax_query: str) -> dict:
     return _normalize_result(response.json())
 
 ############ VER LA LISTA DE LAS TABLAS #######################
+_AUTO_DATE_PREFIXES = ("LocalDateTable_", "DateTableTemplate_")
 
 
-def list_tables() -> list[dict]:
+def _touches_auto_date(relationship: dict) -> bool:
+    return relationship["from"].startswith(_AUTO_DATE_PREFIXES) or relationship["to"].startswith(_AUTO_DATE_PREFIXES)
+
+
+def _list_tables_infoview() -> list[dict]:
     result = execute_query("EVALUATE INFO.VIEW.TABLES()")
     tables = []
     for row in result["rows"]:
@@ -186,7 +194,7 @@ def list_tables() -> list[dict]:
     return tables
 
 
-def describe_table(table_name: str) -> dict:
+def _describe_table_infoview(table_name: str) -> dict:
     columns_result = execute_query("EVALUATE INFO.VIEW.COLUMNS()")
     measures_result = execute_query("EVALUATE INFO.VIEW.MEASURES()")
 
@@ -223,6 +231,7 @@ def describe_table(table_name: str) -> dict:
             "from_cardinality": row["[FromCardinality]"],
             "to_cardinality": row["[ToCardinality]"],
         })
+    relationships = [r for r in relationships if not _touches_auto_date(r)]
 
     if not columns and not measures:
         raise RuntimeError(
@@ -236,3 +245,66 @@ def describe_table(table_name: str) -> dict:
         "measures": measures,
         "relationships": relationships,
     }
+
+
+
+
+def _get_schema() -> dict:
+    return parse_semantic_model_definition(get_model_definition())
+
+def _list_tables_api() -> list[dict]:
+    schema = _get_schema()
+    tables = []
+    for t in schema["tables"]:               
+        tables.append({
+            "name": t["name"],
+            "description": t.get("description"),
+        })
+    return tables
+
+"""
+“El repo original obtiene el esquema con la API de Fabric, que exige permisos de escritura sobre el modelo. 
+Probé alternativas y INFO.VIEW.* funciona con permisos de solo lectura, así que lo sustituí por consultas DAX y 
+mantuve el formato de salida del original.”
+"""
+
+def _describe_table_api(table_name: str) -> dict:
+    schema = _get_schema()
+
+    table = None
+    for t in schema["tables"]:
+        if t["name"] == table_name:
+            table = t
+    if table is None:
+        raise RuntimeError(
+            f"La tabla '{table_name}' no existe. Usa list_available_tables."
+        )
+
+    measures = []
+    for m in schema["measures"]:
+        if m["table"] == table_name:       
+            measures.append(m)
+
+    relationships = []
+    for r in schema["relationships"]:
+        if r["from"].startswith(f"{table_name}[") or r["to"].startswith(f"{table_name}["):
+            relationships.append(r)
+    relationships = [r for r in relationships if not _touches_auto_date(r)]
+
+    return {
+        "table": table_name,
+        "columns": table["columns"],
+        "measures": measures,
+        "relationships": relationships,
+    }
+
+def list_tables() -> list[dict]:
+    if config.SCHEMA_SOURCE == "api":
+        return _list_tables_api()
+    return _list_tables_infoview()
+
+
+def describe_table(table_name: str) -> dict:
+    if config.SCHEMA_SOURCE == "api":
+        return _describe_table_api(table_name)
+    return _describe_table_infoview(table_name)
