@@ -1,0 +1,430 @@
+{
+ "consultas": {
+  "3": {
+   "dax": "EVALUATE ROW(\"v\", [goals])",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 180437
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "4": {
+   "dax": "EVALUATE ROW(\"n\", COUNTROWS(games))",
+   "ok": true,
+   "rows": [
+    {
+     "[n]": 88958
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "5": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([goals], players[name] = \"Lionel Messi\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 458
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "6": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([average_attendance], competitions[competition_id] = \"ES1\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 28002.159321332507
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "6_comprobar_ligas": {
+   "dax": "EVALUATE SELECTCOLUMNS(FILTER(competitions, competitions[country_name] = \"Spain\"), \"id\", competitions[competition_id], \"name\", competitions[name])",
+   "ok": true,
+   "rows": [
+    {
+     "[id]": "CDR",
+     "[name]": "copa-del-rey"
+    },
+    {
+     "[id]": "ES1",
+     "[name]": "laliga"
+    },
+    {
+     "[id]": "SUC",
+     "[name]": "supercopa"
+    }
+   ],
+   "row_count": 3,
+   "truncated": false
+  },
+  "7": {
+   "dax": "EVALUATE ROW(\"casa\", SUM(games[home_club_goals]), \"fuera\", SUM(games[away_club_goals]))",
+   "ok": true,
+   "rows": [
+    {
+     "[casa]": 142043,
+     "[fuera]": 118180
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "8": {
+   "dax": "EVALUATE ROW(\"t2022\", CALCULATE([average_attendance], games[season] = 2022), \"t2023\", CALCULATE([average_attendance], games[season] = 2023))",
+   "ok": true,
+   "rows": [
+    {
+     "[t2022]": 20207.82981871994,
+     "[t2023]": 20809.951050262567
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "9": {
+   "dax": "EVALUATE TOPN(10, SUMMARIZECOLUMNS(players[name], \"g\", [goals]), [g], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "players[name]": "Romelu Lukaku",
+     "[g]": 272
+    },
+    {
+     "players[name]": "Ciro Immobile",
+     "[g]": 273
+    },
+    {
+     "players[name]": "Luis Suárez",
+     "[g]": 350
+    },
+    {
+     "players[name]": "Mohamed Salah",
+     "[g]": 309
+    },
+    {
+     "players[name]": "Pierre-Emerick Aubameyang",
+     "[g]": 308
+    },
+    {
+     "players[name]": "Lionel Messi",
+     "[g]": 458
+    },
+    {
+     "players[name]": "Robert Lewandowski",
+     "[g]": 528
+    },
+    {
+     "players[name]": "Cristiano Ronaldo",
+     "[g]": 434
+    },
+    {
+     "players[name]": "Harry Kane",
+     "[g]": 414
+    },
+    {
+     "players[name]": "Kylian Mbappé",
+     "[g]": 330
+    }
+   ],
+   "row_count": 10,
+   "truncated": false
+  },
+  "10": {
+   "dax": "EVALUATE TOPN(5, SUMMARIZECOLUMNS(games[stadium], \"a\", [average_attendance]), [a], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "games[stadium]": "Los Angeles Memorial Coliseum",
+     "[a]": 75637.0
+    },
+    {
+     "games[stadium]": "Empower Field at Mile High",
+     "[a]": 75824.0
+    },
+    {
+     "games[stadium]": "Lusail Stadium",
+     "[a]": 87026.66666666667
+    },
+    {
+     "games[stadium]": "FNB-Stadium",
+     "[a]": 83855.25
+    },
+    {
+     "games[stadium]": "Mâs Monumental",
+     "[a]": 85018.0
+    }
+   ],
+   "row_count": 5,
+   "truncated": false
+  },
+  "11": {
+   "dax": "EVALUATE SUMMARIZECOLUMNS(dim_date[Año], \"v\", [average_market_value])",
+   "ok": true,
+   "rows": [
+    {
+     "dim_date[Año]": 2000,
+     "[v]": 150000.0
+    },
+    {
+     "dim_date[Año]": 2001,
+     "[v]": 100000.0
+    },
+    {
+     "dim_date[Año]": 2003,
+     "[v]": 650000.0
+    },
+    {
+     "dim_date[Año]": 2004,
+     "[v]": 2048546.6377440346
+    },
+    {
+     "dim_date[Año]": 2005,
+     "[v]": 2572382.123411234
+    },
+    {
+     "dim_date[Año]": 2006,
+     "[v]": 2392749.719790498
+    },
+    {
+     "dim_date[Año]": 2007,
+     "[v]": 2328274.5234110737
+    },
+    {
+     "dim_date[Año]": 2008,
+     "[v]": 2273701.558301988
+    },
+    {
+     "dim_date[Año]": 2009,
+     "[v]": 2271658.6558382367
+    },
+    {
+     "dim_date[Año]": 2010,
+     "[v]": 2213568.321855745
+    },
+    {
+     "dim_date[Año]": 2011,
+     "[v]": 2019565.9996064762
+    },
+    {
+     "dim_date[Año]": 2012,
+     "[v]": 1930775.0836968652
+    },
+    {
+     "dim_date[Año]": 2013,
+     "[v]": 1901797.004771161
+    },
+    {
+     "dim_date[Año]": 2014,
+     "[v]": 1792280.97186485
+    },
+    {
+     "dim_date[Año]": 2015,
+     "[v]": 1697561.5997900194
+    },
+    {
+     "dim_date[Año]": 2016,
+     "[v]": 1732431.3912215394
+    },
+    {
+     "dim_date[Año]": 2017,
+     "[v]": 1836578.236784233
+    },
+    {
+     "dim_date[Año]": 2018,
+     "[v]": 2658393.678370684
+    },
+    {
+     "dim_date[Año]": 2019,
+     "[v]": 2327907.9152924838
+    },
+    {
+     "dim_date[Año]": 2020,
+     "[v]": 2298331.145254262
+    },
+    {
+     "dim_date[Año]": 2021,
+     "[v]": 2206414.692186537
+    },
+    {
+     "dim_date[Año]": 2022,
+     "[v]": 1970480.1557988047
+    },
+    {
+     "dim_date[Año]": 2023,
+     "[v]": 2259024.854105877
+    },
+    {
+     "dim_date[Año]": 2024,
+     "[v]": 2904352.3007757403
+    },
+    {
+     "dim_date[Año]": 2025,
+     "[v]": 3155220.3069346114
+    },
+    {
+     "dim_date[Año]": 2026,
+     "[v]": 3642170.0556301554
+    }
+   ],
+   "row_count": 26,
+   "truncated": false
+  },
+  "12_dim_date": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([goals], dim_date[Año] = 2023))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 13726
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "12_appearances": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([goals], FILTER(appearances, YEAR(appearances[Date]) = 2023)))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 13726
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "13": {
+   "dax": "EVALUATE TOPN(1, SUMMARIZECOLUMNS(clubs[name], \"n\", DISTINCTCOUNT(appearances[player_id])), [n], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "clubs[name]": null,
+     "[n]": 3893
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "14": {
+   "dax": "EVALUATE DISTINCT(players[position])",
+   "ok": true,
+   "rows": [
+    {
+     "players[position]": "Attack"
+    },
+    {
+     "players[position]": "Goalkeeper"
+    },
+    {
+     "players[position]": "Defender"
+    },
+    {
+     "players[position]": "Midfield"
+    },
+    {
+     "players[position]": "Missing"
+    }
+   ],
+   "row_count": 5,
+   "truncated": false
+  },
+  "15": {
+   "dax": "EVALUATE TOPN(1, SELECTCOLUMNS(players, \"name\", players[name], \"v\", players[market_value_in_eur]), [v], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "[name]": "Lamine Yamal",
+     "[v]": 200000000
+    },
+    {
+     "[name]": "Erling Haaland",
+     "[v]": 200000000
+    }
+   ],
+   "row_count": 2,
+   "truncated": false
+  },
+  "4_games_played": {
+   "dax": "EVALUATE ROW(\"v\", [games_played])",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 73426
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "13_sin_vacios": {
+   "dax": "EVALUATE TOPN(1, FILTER(SUMMARIZECOLUMNS(clubs[name], \"n\", DISTINCTCOUNT(appearances[player_id])), NOT ISBLANK(clubs[name])), [n], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "clubs[name]": "Genoa CFC",
+     "[n]": 267
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "13_huerfanas": {
+   "dax": "EVALUATE ROW(\"apariciones_sin_club\", COUNTROWS(FILTER(appearances, ISBLANK(RELATED(clubs[name])))), \"total\", COUNTROWS(appearances))",
+   "ok": true,
+   "rows": [
+    {
+     "[apariciones_sin_club]": 11062,
+     "[total]": 1894350
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "10_partidos": {
+   "dax": "EVALUATE TOPN(5, SUMMARIZECOLUMNS(games[stadium], \"a\", [average_attendance], \"partidos\", COUNTROWS(games)), [a], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "games[stadium]": "Los Angeles Memorial Coliseum",
+     "[a]": 75637.0,
+     "[partidos]": 1
+    },
+    {
+     "games[stadium]": "Empower Field at Mile High",
+     "[a]": 75824.0,
+     "[partidos]": 1
+    },
+    {
+     "games[stadium]": "Lusail Stadium",
+     "[a]": 87026.66666666667,
+     "[partidos]": 12
+    },
+    {
+     "games[stadium]": "FNB-Stadium",
+     "[a]": 83855.25,
+     "[partidos]": 8
+    },
+    {
+     "games[stadium]": "Mâs Monumental",
+     "[a]": 85018.0,
+     "[partidos]": 14
+    }
+   ],
+   "row_count": 5,
+   "truncated": false
+  }
+ },
+ "medidas": {
+  "goals": "SUM(appearances[goals])",
+  "assists": "SUM(appearances[assists])",
+  "minutes_played": "SUM(appearances[minutes_played])",
+  "games_played": "DISTINCTCOUNT(appearances[game_id])",
+  "goals_per_game": "DIVIDE([goals], [games_played])",
+  "average_market_value": "AVERAGE(player_valuations[market_value_in_eur])",
+  "average_attendance": "AVERAGE(games[attendance])"
+ }
+}

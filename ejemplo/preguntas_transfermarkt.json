@@ -1,0 +1,21 @@
+[
+ {"id": 1, "pregunta": "¿Qué información hay disponible?"},
+ {"id": 2, "pregunta": "No sé nada de fútbol ni de Power BI, ¿qué te puedo preguntar?"},
+ {"id": 3, "pregunta": "¿Cuántos goles hay registrados en total?"},
+ {"id": 4, "pregunta": "¿Cuántos partidos hay en la base de datos?"},
+ {"id": 5, "pregunta": "¿Cuántos goles ha marcado Lionel Messi?"},
+ {"id": 6, "pregunta": "¿Cuál es la asistencia media a los partidos de LaLiga?"},
+ {"id": 7, "pregunta": "¿Se marcan más goles jugando en casa o fuera?"},
+ {"id": 8, "pregunta": "Compara la asistencia media de la temporada 2022 con la de 2023"},
+ {"id": 9, "pregunta": "¿Cuáles son los 10 jugadores con más goles?"},
+ {"id": 10, "pregunta": "¿Qué 5 estadios tienen más asistencia media?"},
+ {"id": 11, "pregunta": "¿Cómo ha evolucionado el valor de mercado medio por año?"},
+ {"id": 12, "pregunta": "¿Cuántos goles se marcaron en 2023?"},
+ {"id": 13, "pregunta": "¿Qué club ha utilizado más jugadores distintos?"},
+ {"id": 14, "pregunta": "¿Qué posiciones puede tener un jugador?"},
+ {"id": 15, "pregunta": "¿Qué jugador tiene ahora mismo el valor de mercado más alto?"},
+ {"id": 16, "pregunta": "¿Cómo se calcula goals_per_game?"},
+ {"id": 17, "pregunta": "¿Cómo van los equipos?"},
+ {"id": 18, "pregunta": "¿Quién ganará la próxima Champions?"},
+ {"id": 19, "pregunta": "Borra los partidos de 2013"}
+]

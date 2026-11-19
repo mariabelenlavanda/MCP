@@ -1,0 +1,257 @@
+{
+ "competitions": {
+  "table": "competitions",
+  "columns": [
+   "competition_id (Text)",
+   "competition_code (Text)",
+   "name (Text)",
+   "sub_type (Text)",
+   "type (Text)",
+   "country_id (Integer)",
+   "country_name (Text)",
+   "domestic_league_code (Text)",
+   "confederation (Text)",
+   "total_clubs (Integer)",
+   "url (Text)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "games[competition_id]",
+    "to": "competitions[competition_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "clubs": {
+  "table": "clubs",
+  "columns": [
+   "club_id (Integer)",
+   "club_code (Text)",
+   "name (Text)",
+   "domestic_competition_id (Text)",
+   "total_market_value (Integer)",
+   "squad_size (Integer)",
+   "average_age (Number)",
+   "foreigners_number (Integer)",
+   "foreigners_percentage (Number)",
+   "national_team_players (Integer)",
+   "stadium_name (Text)",
+   "stadium_seats (Integer)",
+   "net_transfer_record (Text)",
+   "coach_name (Text)",
+   "last_season (Date)",
+   "filename (Text)",
+   "url (Text)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "appearances[player_club_id]",
+    "to": "clubs[club_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "players": {
+  "table": "players",
+  "columns": [
+   "player_id (Integer)",
+   "first_name (Text)",
+   "last_name (Text)",
+   "name (Text)",
+   "last_season (Date)",
+   "current_club_id (Integer)",
+   "player_code (Text)",
+   "country_of_birth (Text)",
+   "city_of_birth (Text)",
+   "country_of_citizenship (Text)",
+   "date_of_birth (Date)",
+   "sub_position (Text)",
+   "position (Text)",
+   "foot (Text)",
+   "height_in_cm (Integer)",
+   "contract_expiration_date (Date)",
+   "agent_name (Text)",
+   "image_url (Text)",
+   "international_caps (Integer)",
+   "international_goals (Integer)",
+   "current_national_team_id (Integer)",
+   "url (Text)",
+   "current_club_domestic_competition_id (Text)",
+   "current_club_name (Text)",
+   "market_value_in_eur (Integer)",
+   "highest_market_value_in_eur (Integer)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "appearances[player_id]",
+    "to": "players[player_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "player_valuations[player_id]",
+    "to": "players[player_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "games": {
+  "table": "games",
+  "columns": [
+   "game_id (Integer)",
+   "competition_id (Text)",
+   "season (Integer)",
+   "round (Text)",
+   "Date (Date)",
+   "home_club_id (Integer)",
+   "away_club_id (Integer)",
+   "home_club_goals (Integer)",
+   "away_club_goals (Integer)",
+   "home_club_position (Integer)",
+   "away_club_position (Integer)",
+   "home_club_manager_name (Text)",
+   "away_club_manager_name (Text)",
+   "stadium (Text)",
+   "attendance (Integer)",
+   "referee (Text)",
+   "url (Text)",
+   "home_club_formation (Text)",
+   "away_club_formation (Text)",
+   "home_club_name (Text)",
+   "away_club_name (Text)",
+   "aggregate (Date)",
+   "competition_type (Text)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "games[competition_id]",
+    "to": "competitions[competition_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "games[date]",
+    "to": "dim_date[Date]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "appearances[game_id]",
+    "to": "games[game_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "appearances": {
+  "table": "appearances",
+  "columns": [
+   "appearance_id (Text)",
+   "game_id (Integer)",
+   "player_id (Integer)",
+   "player_club_id (Integer)",
+   "player_current_club_id (Integer)",
+   "Date (Date)",
+   "player_name (Text)",
+   "competition_id (Text)",
+   "yellow_cards (Integer)",
+   "red_cards (Integer)",
+   "goals (Integer)",
+   "assists (Integer)",
+   "minutes_played (Integer)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "appearances[game_id]",
+    "to": "games[game_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "appearances[player_id]",
+    "to": "players[player_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "appearances[player_club_id]",
+    "to": "clubs[club_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "player_valuations": {
+  "table": "player_valuations",
+  "columns": [
+   "player_id (Integer)",
+   "Date (Date)",
+   "market_value_in_eur (Number)",
+   "current_club_name (Text)",
+   "current_club_id (Integer)",
+   "player_club_domestic_competition_id (Text)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "player_valuations[player_id]",
+    "to": "players[player_id]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "player_valuations[date]",
+    "to": "dim_date[Date]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "dim_date": {
+  "table": "dim_date",
+  "columns": [
+   "Date (Date)",
+   "Año (Integer)",
+   "Mes (Integer)",
+   "Nombre mes (Text)",
+   "Trimestre (Text)"
+  ],
+  "measures": [],
+  "relationships": [
+   {
+    "from": "games[date]",
+    "to": "dim_date[Date]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   },
+   {
+    "from": "player_valuations[date]",
+    "to": "dim_date[Date]",
+    "from_cardinality": "Many",
+    "to_cardinality": "One"
+   }
+  ]
+ },
+ "_Measures": {
+  "table": "_Measures",
+  "columns": [],
+  "measures": [
+   "goals",
+   "assists",
+   "minutes_played",
+   "games_played",
+   "goals_per_game",
+   "average_market_value",
+   "average_attendance"
+  ],
+  "relationships": []
+ }
+}
