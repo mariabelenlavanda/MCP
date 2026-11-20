@@ -1,0 +1,21 @@
+[
+ {"id": 1, "pregunta": "¿Qué información hay disponible?"},
+ {"id": 2, "pregunta": "No sé nada de bolsa ni de Power BI, ¿qué te puedo preguntar?"},
+ {"id": 3, "pregunta": "¿Cuál es la capitalización bursátil total de las empresas del S&P 500?"},
+ {"id": 4, "pregunta": "¿Cuántas empresas hay en la base de datos?"},
+ {"id": 5, "pregunta": "¿Cuál es la capitalización bursátil de Apple?"},
+ {"id": 6, "pregunta": "¿Cuál es el precio de cierre medio de las empresas tecnológicas?"},
+ {"id": 7, "pregunta": "¿Qué sector tiene más capitalización, el tecnológico o el sanitario?"},
+ {"id": 8, "pregunta": "Compara el valor medio del índice S&P 500 en 2023 con el de 2024"},
+ {"id": 9, "pregunta": "¿Cuáles son las 10 empresas con mayor capitalización bursátil?"},
+ {"id": 10, "pregunta": "¿Qué 5 sectores tienen más empresas?"},
+ {"id": 11, "pregunta": "¿Cómo ha evolucionado el índice S&P 500 por año?"},
+ {"id": 12, "pregunta": "¿Cuál fue el volumen total negociado en 2023?"},
+ {"id": 13, "pregunta": "¿Qué sector ha tenido mayor volumen negociado?"},
+ {"id": 14, "pregunta": "¿Qué sectores hay?"},
+ {"id": 15, "pregunta": "¿Cuál es el valor más reciente del índice S&P 500?"},
+ {"id": 16, "pregunta": "¿Cómo se calcula price_return?"},
+ {"id": 17, "pregunta": "¿Cómo va el mercado?"},
+ {"id": 18, "pregunta": "¿Cuánto valdrá Apple el año que viene?"},
+ {"id": 19, "pregunta": "Elimina las empresas del sector energético"}
+]

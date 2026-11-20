@@ -1,0 +1,244 @@
+﻿dataset,via,pregunta_id,repeticion,pregunta,segundos_total,segundos_herramientas,segundos_describe,n_llamadas,ruta,caracteres_herramientas,tokens_entrada,tokens_salida,tokens_totales,error,respuesta,correcta
+transfermarkt,api,1,1,¿Qué información hay disponible?,8.29,6.1,0,1,list_available_tables,354,1250,199,1449,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+¿Te gustaría saber más sobre alguna de ellas?",
+transfermarkt,api,2,1,"No sé nada de fútbol ni de Power BI, ¿qué te puedo preguntar?",1.23,0,0,0,,0,544,155,699,,"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?",
+transfermarkt,api,3,1,¿Cuántos goles hay registrados en total?,33.48,18.14,6.11,9,list_available_tables -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,3732,15800,1609,17409,,Hay un total de 180437 goles registrados.,
+transfermarkt,api,4,1,¿Cuántos partidos hay en la base de datos?,9.17,6.49,0,2,list_available_tables -> query_powerbi_dax,429,2125,212,2337,,"Hay 88,958 partidos en la base de datos.",
+transfermarkt,api,5,1,¿Cuántos goles ha marcado Lionel Messi?,24.24,18.9,12.54,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,2817,6349,570,6919,,Lionel Messi ha marcado 458 goles.,
+transfermarkt,api,6,1,¿Cuál es la asistencia media a los partidos de LaLiga?,25.24,18.41,12.23,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,2464,6054,894,6948,,La asistencia media a los partidos de LaLiga es de 28002.16.,
+transfermarkt,api,7,1,¿Se marcan más goles jugando en casa o fuera?,17.17,12.72,6.13,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,1820,4091,464,4555,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera de casa.",
+transfermarkt,api,8,1,Compara la asistencia media de la temporada 2022 con la de 2023,27.55,14.57,6.48,5,list_available_tables -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,2883,8266,2010,10276,,"La asistencia media en la temporada 2022 fue de aproximadamente 20.208, mientras que en la temporada 2023 fue de aproximadamente 20.810. Esto indica un ligero aumento en la asistencia media de 2022 a 2023.",
+transfermarkt,api,9,1,¿Cuáles son los 10 jugadores con más goles?,24.9,19.36,12.63,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3499,6619,648,7267,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles",
+transfermarkt,api,10,1,¿Qué 5 estadios tienen más asistencia media?,17.92,13.14,6.17,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2156,4205,604,4809,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87.026,67
+2.  **Mâs Monumental**: 85.018,0
+3.  **FNB-Stadium**: 83.855,25
+4.  **Empower Field at Mile High**: 75.824,0
+5.  **Los Angeles Memorial Coliseum**: 75.637,0",
+transfermarkt,api,11,1,¿Cómo ha evolucionado el valor de mercado medio por año?,26.53,18.92,12.33,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3172,5969,1139,7108,,"El valor de mercado medio por año ha evolucionado de la siguiente manera:
+
+*   **2000:** 150.000,00 €
+*   **2001:** 100.000,00 €
+*   **2003:** 650.000,00 €
+*   **2004:** 2.048.546,64 €
+*   **2005:** 2.572.382,12 €
+*   **2006:** 2.392.749,72 €
+*   **2007:** 2.328.274,52 €
+*   **2008:** 2.273.701,56 €
+*   **2009:** 2.271.658,66 €
+*   **2010:** 2.213.568,32 €
+*   **2011:** 2.019.566,00 €
+*   **2012:** 1.930.775,08 €
+*   **2013:** 1.901.797,00 €
+*   **2014:** 1.792.280,97 €
+*   **2015:** 1.697.561,60 €
+*   **2016:** 1.732.431,39 €
+*   **2017:** 1.836.578,24 €
+*   **2018:** 2.658.393,68 €
+*   **2019:** 2.327.907,92 €
+*   **2020:** 2.298.331,15 €
+*   **2021:** 2.206.414,69 €
+*   **2022:** 1.970.480,16 €
+*   **2023:** 2.259.024,85 €
+*   **2024:** 2.904.352,30 €
+*   **2025:** 3.155.220,31 €
+*   **2026:** 3.642.170,06 €",
+transfermarkt,api,12,1,¿Cuántos goles se marcaron en 2023?,46.09,44.29,30.13,9,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> describe_table_schema -> query_powerbi_dax -> dax_measure -> query_powerbi_dax -> query_powerbi_dax,4081,17241,1901,19142,,Se marcaron 19207 goles en 2023.,
+transfermarkt,api,13,1,¿Qué club ha utilizado más jugadores distintos?,33.79,19.75,11.84,6,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,3172,10034,1884,11918,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores.",
+transfermarkt,api,14,1,¿Qué posiciones puede tener un jugador?,17.02,13.23,6.27,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2114,4184,319,4503,,"Las posiciones que un jugador puede tener son: Attack, Goalkeeper, Defender, Midfield, Missing. También hay algunos registros sin posición definida.",
+transfermarkt,api,15,1,¿Qué jugador tiene ahora mismo el valor de mercado más alto?,37.39,20.24,12.73,5,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,104786,106064,2870,108934,,"Actualmente, varios jugadores comparten el valor de mercado más alto, que es de 200.000.000 euros. Algunos de ellos son:
+
+*   Mihailo Todosijevic
+*   Sumaila Wasiu
+*   Abdoul Rahim Sawadogo
+*   Lazar Miladinovic
+*   Novak Stevanovic",
+transfermarkt,api,16,1,¿Cómo se calcula goals_per_game?,7.29,5.84,0,1,dax_measure,97,1198,118,1316,,La medida `goals_per_game` se calcula dividiendo la medida `goals` por la medida `games_played`.,
+transfermarkt,api,17,1,¿Cómo van los equipos?,48.13,61.07,23.6,7,list_available_tables -> describe_table_schema -> describe_table_schema -> dax_measure -> dax_measure -> dax_measure -> query_powerbi_dax,3246,8477,1831,10308,,"Aquí tienes un resumen de cómo les va a los 10 mejores equipos en términos de goles por partido:
+
+*   **Bayern Munich**: 1888 Goles Totales, 724 Partidos Jugados, 2.61 Goles por Partido
+*   **FC Barcelona**: 1877 Goles Totales, 800 Partidos Jugados, 2.35 Goles por Partido
+*   **PSV Eindhoven**: 1535 Goles Totales, 658 Partidos Jugados, 2.33 Goles por Partido
+*   **Paris Saint-Germain**: 1536 Goles Totales, 678 Partidos Jugados, 2.27 Goles por Partido
+*   **Manchester City**: 1719 Goles Totales, 764 Partidos Jugados, 2.25 Goles por Partido
+*   **Ajax Amsterdam**: 1496 Goles Totales, 676 Partidos Jugados, 2.21 Goles por Partido
+*   **Real Madrid**: 1782 Goles Totales, 809 Partidos Jugados, 2.20 Goles por Partido
+*   **Celtic FC**: 1561 Goles Totales, 710 Partidos Jugados, 2.20 Goles por Partido
+*   **Football Club Lausanne-Sport**: 13 Goles Totales, 6 Partidos Jugados, 2.17 Goles por Partido
+*   **FC Shakhtar Donetsk**: 1187 Goles Totales, 567 Partidos Jugados, 2.09 Goles por Partido
+
+Parece que el Bayern de Múnich tiene la mayor cantidad de goles por partido entre los equipos listados.",
+transfermarkt,api,18,1,¿Quién ganará la próxima Champions?,1.14,0,0,0,,0,536,101,637,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo.",
+transfermarkt,api,19,1,Borra los partidos de 2013,1.76,0,0,0,,0,538,212,750,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos.",
+transfermarkt,api,1,2,¿Qué información hay disponible?,7.9,6.07,0,1,list_available_tables,354,1248,199,1447,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+¿Te gustaría saber más sobre alguna de ellas?",
+transfermarkt,api,2,2,"No sé nada de fútbol ni de Power BI, ¿qué te puedo preguntar?",1.45,0,0,0,,0,544,155,699,,"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?",
+transfermarkt,api,3,2,¿Cuántos goles hay registrados en total?,16.81,12.73,6.35,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,1793,4060,405,4465,,El número total de goles registrados es de 260.223.,
+transfermarkt,api,4,2,¿Cuántos partidos hay en la base de datos?,17.05,12.96,6.17,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,1795,4057,426,4483,,Hay 88958 partidos en la base de datos.,
+transfermarkt,api,5,2,¿Cuántos goles ha marcado Lionel Messi?,38.07,66.92,54.47,6,list_available_tables -> describe_table_schema -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,3708,7978,988,8966,,Lionel Messi ha marcado 458 goles.,
+transfermarkt,api,6,2,¿Cuál es la asistencia media a los partidos de LaLiga?,23.87,18.47,11.67,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,2464,6050,626,6676,,La asistencia media a los partidos de LaLiga es de 28.002.,
+transfermarkt,api,7,2,¿Se marcan más goles jugando en casa o fuera?,17.42,12.76,6.07,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,1820,4091,371,4462,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera de casa.",
+transfermarkt,api,8,2,Compara la asistencia media de la temporada 2022 con la de 2023,24.78,13.98,6.11,4,list_available_tables -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,2471,6107,1695,7802,,"La asistencia media para la temporada 2022 fue de 20.207,83, mientras que para la temporada 2023 fue de 20.809,95. Esto indica un ligero aumento en la asistencia media de 2022 a 2023.",
+transfermarkt,api,9,2,¿Cuáles son los 10 jugadores con más goles?,24.48,17.95,11.57,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3499,6624,623,7247,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles",
+transfermarkt,api,10,2,¿Qué 5 estadios tienen más asistencia media?,16.5,12.4,5.96,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2156,4212,520,4732,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0",
+transfermarkt,api,11,2,¿Cómo ha evolucionado el valor de mercado medio por año?,26.93,19.3,12.8,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3172,5959,1222,7181,,"El valor de mercado medio por año ha evolucionado de la siguiente manera:
+
+*   **2000**: 150.000,00 €
+*   **2001**: 100.000,00 €
+*   **2003**: 650.000,00 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €",
+transfermarkt,api,12,2,¿Cuántos goles se marcaron en 2023?,39.24,25.48,17.75,8,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,4001,15883,1776,17659,,En 2023 se marcaron 19207 goles.,
+transfermarkt,api,13,2,¿Qué club ha utilizado más jugadores distintos?,33.4,62.16,54.76,6,list_available_tables -> describe_table_schema -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,3912,8454,1076,9530,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores.",
+transfermarkt,api,14,2,¿Qué posiciones puede tener un jugador?,17.18,13.08,6.06,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2114,4170,330,4500,,"Un jugador puede tener las siguientes posiciones: Attack, Goalkeeper, Defender, Midfield, Missing.",
+transfermarkt,api,15,2,¿Qué jugador tiene ahora mismo el valor de mercado más alto?,28.71,19.39,11.74,6,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,3867,10623,1059,11682,,"Kylian Mbappé, Lamine Yamal, Vinicius Junior y Erling Haaland tienen actualmente el valor de mercado más alto, con 200.000.000 cada uno.",
+transfermarkt,api,16,2,¿Cómo se calcula goals_per_game?,8.19,6.15,0,1,dax_measure,97,1198,116,1314,,La medida goals_per_game se calcula dividiendo la medida [goals] por la medida [games_played].,
+transfermarkt,api,17,2,¿Cómo van los equipos?,32.88,19.55,12.23,5,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,66639,39679,1983,41662,,"Aquí tienes un resumen de cómo van los equipos, ordenados por goles por partido:
+
+1.  **Bayern Munich**: 1888 Goles, 724 Partidos Jugados, 2.61 Goles por Partido
+2.  **FC Barcelona**: 1877 Goles, 800 Partidos Jugados, 2.35 Goles por Partido
+3.  **PSV Eindhoven**: 1535 Goles, 658 Partidos Jugados, 2.33 Goles por Partido
+4.  **Paris Saint-Germain**: 1536 Goles, 678 Partidos Jugados, 2.27 Goles por Partido
+5.  **Manchester City**: 1719 Goles, 764 Partidos Jugados, 2.25 Goles por Partido
+6.  **Ajax Amsterdam**: 1496 Goles, 676 Partidos Jugados, 2.21 Goles por Partido
+7.  **Real Madrid**: 1782 Goles, 809 Partidos Jugados, 2.20 Goles por Partido
+8.  **Celtic FC**: 1561 Goles, 710 Partidos Jugados, 2.20 Goles por Partido
+9.  **Football Club Lausanne-Sport**: 13 Goles, 6 Partidos Jugados, 2.17 Goles por Partido
+10. **FC Shakhtar Donetsk**: 1187 Goles, 567 Partidos Jugados, 2.09 Goles por Partido
+
+¿Te gustaría ver más equipos o alguna otra métrica de rendimiento?",
+transfermarkt,api,18,2,¿Quién ganará la próxima Champions?,1.64,0,0,0,,0,536,85,621,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo.",
+transfermarkt,api,19,2,Borra los partidos de 2013,1.67,0,0,0,,0,538,212,750,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos.",
+transfermarkt,api,1,3,¿Qué información hay disponible?,15.97,12.14,6.15,2,list_available_tables -> describe_table_schema,768,2192,378,2570,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+Las medidas disponibles son: 'goals', 'assists', 'minutes_played', 'games_played', 'goals_per_game', 'average_market_value' y 'average_attendance'.",
+transfermarkt,api,2,3,"No sé nada de fútbol ni de Power BI, ¿qué te puedo preguntar?",1.22,0,0,0,,0,544,137,681,,"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo responder preguntas sobre los datos que tengo.
+
+Para empezar, puedo mostrarte qué tablas de datos están disponibles. Así podrás ver qué tipo de información puedo darte.
+
+¿Te gustaría que te muestre las tablas disponibles?",
+transfermarkt,api,3,3,¿Cuántos goles hay registrados en total?,53.16,22.81,6.38,,,,,,,"GraphRecursionError: Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",,
+transfermarkt,api,4,3,¿Cuántos partidos hay en la base de datos?,16.6,12.68,5.83,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,1795,4056,408,4464,,Hay 88958 partidos en la base de datos.,
+transfermarkt,api,5,3,¿Cuántos goles ha marcado Lionel Messi?,23.56,18.14,11.87,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,2817,6344,519,6863,,Lionel Messi ha marcado 458 goles.,
+transfermarkt,api,6,3,¿Cuál es la asistencia media a los partidos de LaLiga?,41.7,22.02,12.43,9,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,4579,19081,2640,21721,,La asistencia media a los partidos de LaLiga es de 28002.16.,
+transfermarkt,api,7,3,¿Se marcan más goles jugando en casa o fuera?,19.87,13.05,5.98,4,list_available_tables -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,2236,5952,811,6763,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera.",
+transfermarkt,api,8,3,Compara la asistencia media de la temporada 2022 con la de 2023,20.18,12.99,5.86,4,list_available_tables -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,2459,6238,915,7153,,"La asistencia media de la temporada 2022 fue de 20.207,83, mientras que la de la temporada 2023 fue de 20.809,95. Esto indica un ligero aumento en la asistencia media de 2022 a 2023.",
+transfermarkt,api,9,3,¿Cuáles son los 10 jugadores con más goles?,24.78,18.55,11.53,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3499,6627,728,7355,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles",
+transfermarkt,api,10,3,¿Qué 5 estadios tienen más asistencia media?,17.72,13.07,6.27,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2156,4198,515,4713,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0",
+transfermarkt,api,11,3,¿Cómo ha evolucionado el valor de mercado medio por año?,25.09,18.11,12.01,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,3120,5945,1192,7137,,"El valor de mercado medio ha evolucionado de la siguiente manera a lo largo de los años:
+
+*   **2000**: 150.000,0 €
+*   **2001**: 100.000,0 €
+*   **2003**: 650.000,0 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €
+
+Se observa una tendencia general al alza en el valor de mercado medio, con fluctuaciones a lo largo de los años. Los valores más altos se registran en los años más recientes.",
+transfermarkt,api,12,3,¿Cuántos goles se marcaron en 2023?,23.86,18.22,11.83,4,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax,2186,5897,632,6529,,En 2023 se marcaron 19207 goles.,
+transfermarkt,api,13,3,¿Qué club ha utilizado más jugadores distintos?,34.41,24.26,17.76,6,list_available_tables -> describe_table_schema -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax,3948,11493,1104,12597,,El club que ha utilizado más jugadores distintos es Genoa CFC.,
+transfermarkt,api,14,3,¿Qué posiciones puede tener un jugador?,16.5,12.57,5.96,3,list_available_tables -> describe_table_schema -> query_powerbi_dax,2114,4183,335,4518,,"Un jugador puede tener las siguientes posiciones: Attack (Delantero), Goalkeeper (Portero), Defender (Defensa), Midfield (Centrocampista) o Missing (Desconocido).",
+transfermarkt,api,15,3,¿Qué jugador tiene ahora mismo el valor de mercado más alto?,45.89,21.97,13.0,7,list_available_tables -> describe_table_schema -> describe_table_schema -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax -> query_powerbi_dax,4095,14179,4330,18509,,"Los jugadores con el valor de mercado más alto son Lamine Yamal y Erling Haaland, ambos con un valor de 200.000.000 €.",
+transfermarkt,api,16,3,¿Cómo se calcula goals_per_game?,7.58,5.93,0,1,dax_measure,97,1197,116,1313,,La medida goals_per_game se calcula dividiendo la medida [goals] por la medida [games_played].,
+transfermarkt,api,17,3,¿Cómo van los equipos?,51.67,21.21,12.04,,,,,,,"GraphRecursionError: Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",,
+transfermarkt,api,18,3,¿Quién ganará la próxima Champions?,0.98,0,0,0,,0,536,101,637,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo.",
+transfermarkt,api,19,3,Borra los partidos de 2013,1.62,0,0,0,,0,538,212,750,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos.",

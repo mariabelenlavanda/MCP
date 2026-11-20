@@ -1,0 +1,562 @@
+﻿via,pregunta_id,repeticion,correcta,nota,respuesta
+infoview,1,1,1,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+¿Te gustaría saber más sobre alguna de ellas?"
+infoview,2,1,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo responder preguntas sobre los datos que tengo.
+
+Para empezar, puedo mostrarte qué tablas de datos están disponibles. Así podrás ver qué tipo de información puedo darte.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+infoview,3,1,1,,"Se han registrado un total de 180,437 goles."
+infoview,4,1,1,,"Hay 88,958 partidos en la base de datos."
+infoview,5,1,1,,Lionel Messi ha marcado 458 goles.
+infoview,6,1,1,,La asistencia media a los partidos de LaLiga es de 28.002.
+infoview,7,1,1,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles jugando en casa, mientras que se han marcado 118.180 goles jugando fuera."
+infoview,8,1,1,,"La asistencia media de la temporada 2022 fue de 20.207,83, mientras que la de la temporada 2023 fue de 20.809,95. Esto indica un ligero aumento en la asistencia media de 2022 a 2023."
+infoview,9,1,1,,"Los 10 jugadores con más goles son:
+
+1. Robert Lewandowski: 528 goles
+2. Lionel Messi: 458 goles
+3. Cristiano Ronaldo: 434 goles
+4. Harry Kane: 414 goles
+5. Luis Suárez: 350 goles
+6. Kylian Mbappé: 330 goles
+7. Mohamed Salah: 309 goles
+8. Pierre-Emerick Aubameyang: 308 goles
+9. Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+infoview,10,1,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0"
+infoview,11,1,1,,"El valor de mercado medio ha evolucionado de la siguiente manera por año:
+
+*   **2000**: 150.000,00 €
+*   **2001**: 100.000,00 €
+*   **2003**: 650.000,00 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €"
+infoview,12,1,1,,En 2023 se marcaron 13726 goles.
+infoview,13,1,1,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores distintos."
+infoview,14,1,1,trata 'Missing' como posición (trampa no superada),"Un jugador puede tener las siguientes posiciones:
+
+*   Ataque
+*   Portero
+*   Defensa
+*   Centro del campo
+*   Desaparecido (Missing)"
+infoview,15,1,0,jugadores incorrectos,"Los jugadores con el valor de mercado más alto son Kylian Mbappé, Erling Haaland, Vinicius Junior y Lamine Yamal, todos con un valor de 200.000.000,0 EUR."
+infoview,16,1,1,,La medida goals_per_game se calcula dividiendo la medida [goals] por la medida [games_played].
+infoview,17,1,1,declara criterio y avisa de un valor anómalo,"Aquí tienes un resumen de cómo van los equipos, ordenados por Goles por Partido:
+
+1.  **Bayern Munich**: 1888 Goles, 1639 Asistencias, 724 Partidos Jugados, 2.61 Goles por Partido, 2,290,092.74 Valor de Mercado Promedio.
+2.  **FC Barcelona**: 1877 Goles, 1524 Asistencias, 800 Partidos Jugados, 2.35 Goles por Partido, 2,290,092.74 Valor de Mercado Promedio.
+3.  **PSV Eindhoven**: 1535 Goles, 1254 Asistencias, 658 Partidos Jugados, 2.33 Goles por Partido, 2,290,092.74 Valor de Mercado Promedio.
+4.  **Paris Saint-Germain**: 1536 Goles, 1217 Asistencias, 678 Partidos Jugados, 2.27 Goles por Partido, 2,290,092.74 Valor de Mercado Promedio.
+5.  **Manchester City**: 1719 Goles, 1394 Asistencias, 764 Partidos Jugados, 2.25 Goles por Partido, 2,290,092.74 Valor de Mercado Promedio.
+
+Estos son los 5 equipos con el mayor promedio de goles por partido. El valor de mercado promedio es el mismo para todos los equipos en esta lista, lo que sugiere que es un promedio general del modelo o un valor predeterminado."
+infoview,18,1,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+infoview,19,1,1,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos."
+infoview,1,2,1,,"Las tablas disponibles en el modelo son: `competitions`, `clubs`, `players`, `games`, `appearances`, `player_valuations`, `dim_date` y `_Measures`.
+
+¿Te gustaría que describa alguna en particular para conocer sus columnas y medidas?"
+infoview,2,2,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+infoview,3,2,1,,Hay un total de 180437 goles registrados.
+infoview,4,2,1,,"Hay 88,958 partidos en la base de datos."
+infoview,5,2,1,,Lionel Messi ha marcado 458 goles.
+infoview,6,2,1,,La asistencia media a los partidos de LaLiga es de 28002.16.
+infoview,7,2,1,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles jugando en casa, mientras que se han marcado 118.180 goles jugando fuera de casa."
+infoview,8,2,1,,"La asistencia media de la temporada 2022 fue de 20.207,83, mientras que la de la temporada 2023 fue de 20.809,95."
+infoview,9,2,1,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+infoview,10,2,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0"
+infoview,11,2,1,,"El valor de mercado medio ha evolucionado de la siguiente manera por año:
+
+*   **2000:** 150.000,00 €
+*   **2001:** 100.000,00 €
+*   **2003:** 650.000,00 €
+*   **2004:** 2.048.546,64 €
+*   **2005:** 2.572.382,12 €
+*   **2006:** 2.392.749,72 €
+*   **2007:** 2.328.274,52 €
+*   **2008:** 2.273.701,56 €
+*   **2009:** 2.271.658,66 €
+*   **2010:** 2.213.568,32 €
+*   **2011:** 2.019.566,00 €
+*   **2012:** 1.930.775,08 €
+*   **2013:** 1.901.797,00 €
+*   **2014:** 1.792.280,97 €
+*   **2015:** 1.697.561,60 €
+*   **2016:** 1.732.431,39 €
+*   **2017:** 1.836.578,24 €
+*   **2018:** 2.658.393,68 €
+*   **2019:** 2.327.907,92 €
+*   **2020:** 2.298.331,15 €
+*   **2021:** 2.206.414,69 €
+*   **2022:** 1.970.480,16 €
+*   **2023:** 2.259.024,85 €
+*   **2024:** 2.904.352,30 €
+*   **2025:** 3.155.220,31 €
+*   **2026:** 3.642.170,06 €"
+infoview,12,2,0,19.207 goles en vez de 13.726,Se marcaron 19207 goles en 2023.
+infoview,13,2,1,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores distintos."
+infoview,14,2,1,trata 'Missing' como posición (trampa no superada),"Un jugador puede tener las siguientes posiciones: Attack, Goalkeeper, Defender, Midfield, Missing."
+infoview,15,2,1,,"Lamine Yamal y Erling Haaland tienen actualmente el valor de mercado más alto, con 200.000.000 euros cada uno."
+infoview,16,2,1,,La medida `goals_per_game` se calcula dividiendo la medida `goals` por la medida `games_played`.
+infoview,17,2,0,"declara criterio, pero inventa que la edad está en meses","Aquí tienes un resumen de cómo les va a los 10 mejores equipos en términos de goles:
+
+*   **Bayern Munich**:
+    *   Tamaño de la plantilla: 31
+    *   Edad media: 261.0 (asumiendo que está en meses, serían aproximadamente 21.75 años)
+    *   Goles: 1888
+    *   Asistencias: 1639
+    *   Partidos jugados: 724
+    *   Goles por partido: 2.6077
+*   **FC Barcelona**:
+    *   Tamaño de la plantilla: 28
+    *   Edad media: 243.0 (aproximadamente 20.25 años)
+    *   Goles: 1877
+    *   Asistencias: 1524
+    *   Partidos jugados: 800
+    *   Goles por partido: 2.3462
+*   **Real Madrid**:
+    *   Tamaño de la plantilla: 30
+    *   Edad media: 255.0 (aproximadamente 21.25 años)
+    *   Goles: 1782
+    *   Asistencias: 1494
+    *   Partidos jugados: 809
+    *   Goles por partido: 2.2027
+*   **Manchester City**:
+    *   Tamaño de la plantilla: 32
+    *   Edad media: 252.0 (aproximadamente 21.0 años)
+    *   Goles: 1719
+    *   Asistencias: 1394
+    *   Partidos jugados: 764
+    *   Goles por partido: 2.25
+*   **Celtic FC**:
+    *   Tamaño de la plantilla: 30
+    *   Edad media: 266.0 (aproximadamente 22.17 años)
+    *   Goles: 1561
+    *   Asistencias: 1315
+    *   Partidos jugados: 710
+    *   Goles por partido: 2.1985
+*   **Paris Saint-Germain**:
+    *   Tamaño de la plantilla: 27
+    *   Edad media: 242.0 (aproximadamente 20.17 años)
+    *   Goles: 1536
+    *   Asistencias: 1217
+    *   Partidos jugados: 678
+    *   Goles por partido: 2.2654
+*   **PSV Eindhoven**:
+    *   Tamaño de la plantilla: 27
+    *   Edad media: 252.0 (aproximadamente 21.0 años)
+    *   Goles: 1535
+    *   Asistencias: 1254
+    *   Partidos jugados: 658
+    *   Goles por partido: 2.3328
+*   **Ajax Amsterdam**:
+    *   Tamaño de la plantilla: 26
+    *   Edad media: 249.0 (aproximadamente 20.75 años)
+    *   Goles: 1496
+    *   Asistencias: 1221
+    *   Partidos jugados: 676
+    *   Goles por partido: 2.2130
+*   **Borussia Dortmund**:
+    *   Tamaño de la plantilla: 29
+    *   Edad media: 248.0 (aproximadamente 20.67 años)
+    *   Goles: 1447
+    *   Asistencias: 1292
+    *   Partidos jugados: 693
+    *   Goles por partido: 2.0880
+*   **Liverpool FC**:
+    *   Tamaño de la plantilla: 29
+    *   Edad media: 254.0 (aproximadamente 21.17 años)
+    *   Goles: 1423
+    *   Asistencias: 1145
+    *   Partidos jugados: 728
+    *   Goles por partido: 1.9546
+
+Tenga en cuenta que la ""Edad media"" se presenta en un formato que sugiere que podría estar en meses, por lo que he proporcionado una conversión aproximada a años. El ""Valor de mercado total"" no estaba disponible para los clubes individuales en los datos."
+infoview,18,2,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+infoview,19,2,1,,"Lo siento, no puedo borrar datos. Solo puedo consultar el modelo semántico."
+infoview,1,3,1,,"La tabla '_Measures' contiene las siguientes medidas: 'goals', 'assists', 'minutes_played', 'games_played', 'goals_per_game', 'average_market_value' y 'average_attendance'.
+
+En resumen, la información disponible se organiza en las siguientes tablas:
+
+*   **competitions**: Detalles sobre las competiciones (ID, nombre, tipo, país, etc.).
+*   **clubs**: Información sobre los clubes (ID, nombre, valor de mercado, tamaño de la plantilla, etc.).
+*   **players**: Datos de los jugadores (ID, nombre, fecha de nacimiento, posición, valor de mercado, etc.).
+*   **games**: Información sobre los partidos (ID, competición, temporada, resultados, asistencia, etc.).
+*   **appearances**: Registros de las apariciones de los jugadores en los partidos (goles, asistencias, minutos jugados, tarjetas).
+*   **player_valuations**: Historial de los valores de mercado de los jugadores.
+*   **dim_date**: Dimension de tiempo con detalles de fecha (año, mes, trimestre).
+*   **_Measures**: Contiene medidas precalculadas como 'goals', 'assists', 'minutes_played', 'games_played', 'goals_per_game', 'average_market_value' y 'average_attendance'.
+
+Estas tablas están interconectadas, permitiendo analizar datos de jugadores, clubes, competiciones y partidos de manera integral."
+infoview,2,3,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+infoview,3,3,1,,El número total de goles registrados es de 180.437.
+infoview,4,3,1,,Hay 88958 partidos en la base de datos.
+infoview,5,3,1,,Lionel Messi ha marcado 458 goles.
+infoview,6,3,1,,La asistencia media a los partidos de LaLiga es de 28002.16.
+infoview,7,3,1,,"Se marcan más goles jugando en casa. Los equipos de casa han marcado un total de 142.043 goles, mientras que los equipos visitantes han marcado 118.180 goles."
+infoview,8,3,1,,"La asistencia media de la temporada 2022 fue de 20.207,83, mientras que la de la temporada 2023 fue de 20.809,95."
+infoview,9,3,1,,"Los 10 jugadores con más goles son:
+
+1. Robert Lewandowski: 528 goles
+2. Lionel Messi: 458 goles
+3. Cristiano Ronaldo: 434 goles
+4. Harry Kane: 414 goles
+5. Luis Suárez: 350 goles
+6. Kylian Mbappé: 330 goles
+7. Mohamed Salah: 309 goles
+8. Pierre-Emerick Aubameyang: 308 goles
+9. Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+infoview,10,3,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87.027
+2.  **Mâs Monumental**: 85.018
+3.  **FNB-Stadium**: 83.855
+4.  **Empower Field at Mile High**: 75.824
+5.  **Los Angeles Memorial Coliseum**: 75.637"
+infoview,11,3,1,,"El valor de mercado medio ha evolucionado de la siguiente manera a lo largo de los años:
+
+*   **2000**: 150.000 €
+*   **2001**: 100.000 €
+*   **2003**: 650.000 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €
+
+Se observa un aumento significativo del valor de mercado medio desde el año 2000 hasta 2005, con algunas fluctuaciones en los años siguientes, y una tendencia general al alza nuevamente a partir de 2017, alcanzando los valores más altos en los años más recientes."
+infoview,12,3,0,19.207 goles en vez de 13.726,Se marcaron 19207 goles en 2023.
+infoview,13,3,1,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores."
+infoview,14,3,1,trata 'Missing' como posición (trampa no superada),"Un jugador puede tener las siguientes posiciones: Attack, Goalkeeper, Defender, Midfield, Missing. También hay algunos jugadores sin una posición especificada (null)."
+infoview,15,3,0,jugadores incorrectos,"El jugador con el valor de mercado más alto es: Kylian Mbappé, Erling Haaland, Vinicius Junior, Lamine Yamal, todos con un valor de mercado de 200.000.000 €."
+infoview,16,3,1,,El indicador goals_per_game se calcula dividiendo el número de goles ([goals]) por el número de partidos jugados ([games_played]).
+infoview,17,3,0,muestra el mismo valor de mercado para todos sin avisar,"Aquí tienes un resumen de cómo les está yendo a los equipos, mostrando los 10 clubes con más goles, sus partidos jugados y su valor de mercado promedio:
+
+*   **Bayern Munich**: 1888 Goles Totales, 724 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **FC Barcelona**: 1877 Goles Totales, 800 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Real Madrid**: 1782 Goles Totales, 809 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Manchester City**: 1719 Goles Totales, 764 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Celtic FC**: 1561 Goles Totales, 710 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Paris Saint-Germain**: 1536 Goles Totales, 678 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **PSV Eindhoven**: 1535 Goles Totales, 658 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Ajax Amsterdam**: 1496 Goles Totales, 676 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Borussia Dortmund**: 1447 Goles Totales, 693 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+*   **Liverpool FC**: 1423 Goles Totales, 728 Partidos Jugados, 2290092.74 Valor de Mercado Promedio
+
+Parece que el Bayern Munich, el FC Barcelona y el Real Madrid son los equipos con más goles."
+infoview,18,3,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+infoview,19,3,1,,"Lo siento, no puedo borrar datos. Solo puedo consultar el modelo semántico."
+api,1,1,1,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+¿Te gustaría saber más sobre alguna de ellas?"
+api,2,1,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+api,3,1,1,,Hay un total de 180437 goles registrados.
+api,4,1,1,,"Hay 88,958 partidos en la base de datos."
+api,5,1,1,,Lionel Messi ha marcado 458 goles.
+api,6,1,1,,La asistencia media a los partidos de LaLiga es de 28002.16.
+api,7,1,1,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera de casa."
+api,8,1,1,,"La asistencia media en la temporada 2022 fue de aproximadamente 20.208, mientras que en la temporada 2023 fue de aproximadamente 20.810. Esto indica un ligero aumento en la asistencia media de 2022 a 2023."
+api,9,1,1,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+api,10,1,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87.026,67
+2.  **Mâs Monumental**: 85.018,0
+3.  **FNB-Stadium**: 83.855,25
+4.  **Empower Field at Mile High**: 75.824,0
+5.  **Los Angeles Memorial Coliseum**: 75.637,0"
+api,11,1,1,,"El valor de mercado medio por año ha evolucionado de la siguiente manera:
+
+*   **2000:** 150.000,00 €
+*   **2001:** 100.000,00 €
+*   **2003:** 650.000,00 €
+*   **2004:** 2.048.546,64 €
+*   **2005:** 2.572.382,12 €
+*   **2006:** 2.392.749,72 €
+*   **2007:** 2.328.274,52 €
+*   **2008:** 2.273.701,56 €
+*   **2009:** 2.271.658,66 €
+*   **2010:** 2.213.568,32 €
+*   **2011:** 2.019.566,00 €
+*   **2012:** 1.930.775,08 €
+*   **2013:** 1.901.797,00 €
+*   **2014:** 1.792.280,97 €
+*   **2015:** 1.697.561,60 €
+*   **2016:** 1.732.431,39 €
+*   **2017:** 1.836.578,24 €
+*   **2018:** 2.658.393,68 €
+*   **2019:** 2.327.907,92 €
+*   **2020:** 2.298.331,15 €
+*   **2021:** 2.206.414,69 €
+*   **2022:** 1.970.480,16 €
+*   **2023:** 2.259.024,85 €
+*   **2024:** 2.904.352,30 €
+*   **2025:** 3.155.220,31 €
+*   **2026:** 3.642.170,06 €"
+api,12,1,0,19.207 goles en vez de 13.726,Se marcaron 19207 goles en 2023.
+api,13,1,1,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores."
+api,14,1,1,trata 'Missing' como posición (trampa no superada),"Las posiciones que un jugador puede tener son: Attack, Goalkeeper, Defender, Midfield, Missing. También hay algunos registros sin posición definida."
+api,15,1,0,jugadores incorrectos,"Actualmente, varios jugadores comparten el valor de mercado más alto, que es de 200.000.000 euros. Algunos de ellos son:
+
+*   Mihailo Todosijevic
+*   Sumaila Wasiu
+*   Abdoul Rahim Sawadogo
+*   Lazar Miladinovic
+*   Novak Stevanovic"
+api,16,1,1,,La medida `goals_per_game` se calcula dividiendo la medida `goals` por la medida `games_played`.
+api,17,1,1,elige un criterio y lo declara (goles por partido),"Aquí tienes un resumen de cómo les va a los 10 mejores equipos en términos de goles por partido:
+
+*   **Bayern Munich**: 1888 Goles Totales, 724 Partidos Jugados, 2.61 Goles por Partido
+*   **FC Barcelona**: 1877 Goles Totales, 800 Partidos Jugados, 2.35 Goles por Partido
+*   **PSV Eindhoven**: 1535 Goles Totales, 658 Partidos Jugados, 2.33 Goles por Partido
+*   **Paris Saint-Germain**: 1536 Goles Totales, 678 Partidos Jugados, 2.27 Goles por Partido
+*   **Manchester City**: 1719 Goles Totales, 764 Partidos Jugados, 2.25 Goles por Partido
+*   **Ajax Amsterdam**: 1496 Goles Totales, 676 Partidos Jugados, 2.21 Goles por Partido
+*   **Real Madrid**: 1782 Goles Totales, 809 Partidos Jugados, 2.20 Goles por Partido
+*   **Celtic FC**: 1561 Goles Totales, 710 Partidos Jugados, 2.20 Goles por Partido
+*   **Football Club Lausanne-Sport**: 13 Goles Totales, 6 Partidos Jugados, 2.17 Goles por Partido
+*   **FC Shakhtar Donetsk**: 1187 Goles Totales, 567 Partidos Jugados, 2.09 Goles por Partido
+
+Parece que el Bayern de Múnich tiene la mayor cantidad de goles por partido entre los equipos listados."
+api,18,1,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+api,19,1,1,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos."
+api,1,2,1,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+¿Te gustaría saber más sobre alguna de ellas?"
+api,2,2,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo mostrarte qué tipo de información está disponible.
+
+Para empezar, puedo listar las tablas de datos que tengo. Así podrás ver qué tipo de información contienen y qué preguntas podrías hacer.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+api,3,2,0,cifra incorrecta,El número total de goles registrados es de 260.223.
+api,4,2,1,,Hay 88958 partidos en la base de datos.
+api,5,2,1,,Lionel Messi ha marcado 458 goles.
+api,6,2,1,,La asistencia media a los partidos de LaLiga es de 28.002.
+api,7,2,1,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera de casa."
+api,8,2,1,,"La asistencia media para la temporada 2022 fue de 20.207,83, mientras que para la temporada 2023 fue de 20.809,95. Esto indica un ligero aumento en la asistencia media de 2022 a 2023."
+api,9,2,1,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+api,10,2,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0"
+api,11,2,1,,"El valor de mercado medio por año ha evolucionado de la siguiente manera:
+
+*   **2000**: 150.000,00 €
+*   **2001**: 100.000,00 €
+*   **2003**: 650.000,00 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €"
+api,12,2,0,19.207 goles en vez de 13.726,En 2023 se marcaron 19207 goles.
+api,13,2,1,,"El club que ha utilizado más jugadores distintos es Genoa CFC, con 267 jugadores."
+api,14,2,1,trata 'Missing' como posición (trampa no superada),"Un jugador puede tener las siguientes posiciones: Attack, Goalkeeper, Defender, Midfield, Missing."
+api,15,2,0,jugadores incorrectos,"Kylian Mbappé, Lamine Yamal, Vinicius Junior y Erling Haaland tienen actualmente el valor de mercado más alto, con 200.000.000 cada uno."
+api,16,2,1,,La medida goals_per_game se calcula dividiendo la medida [goals] por la medida [games_played].
+api,17,2,1,elige un criterio y lo declara (goles por partido),"Aquí tienes un resumen de cómo van los equipos, ordenados por goles por partido:
+
+1.  **Bayern Munich**: 1888 Goles, 724 Partidos Jugados, 2.61 Goles por Partido
+2.  **FC Barcelona**: 1877 Goles, 800 Partidos Jugados, 2.35 Goles por Partido
+3.  **PSV Eindhoven**: 1535 Goles, 658 Partidos Jugados, 2.33 Goles por Partido
+4.  **Paris Saint-Germain**: 1536 Goles, 678 Partidos Jugados, 2.27 Goles por Partido
+5.  **Manchester City**: 1719 Goles, 764 Partidos Jugados, 2.25 Goles por Partido
+6.  **Ajax Amsterdam**: 1496 Goles, 676 Partidos Jugados, 2.21 Goles por Partido
+7.  **Real Madrid**: 1782 Goles, 809 Partidos Jugados, 2.20 Goles por Partido
+8.  **Celtic FC**: 1561 Goles, 710 Partidos Jugados, 2.20 Goles por Partido
+9.  **Football Club Lausanne-Sport**: 13 Goles, 6 Partidos Jugados, 2.17 Goles por Partido
+10. **FC Shakhtar Donetsk**: 1187 Goles, 567 Partidos Jugados, 2.09 Goles por Partido
+
+¿Te gustaría ver más equipos o alguna otra métrica de rendimiento?"
+api,18,2,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+api,19,2,1,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos."
+api,1,3,1,,"Las tablas disponibles son: 'competitions', 'clubs', 'players', 'games', 'appearances', 'player_valuations', 'dim_date' y '_Measures'.
+
+Las medidas disponibles son: 'goals', 'assists', 'minutes_played', 'games_played', 'goals_per_game', 'average_market_value' y 'average_attendance'."
+api,2,3,0,no explica el contenido ni propone preguntas: solo ofrece listar tablas (subjetiva),"¡Hola! No te preocupes, estoy aquí para ayudarte. Aunque no sepas de fútbol ni de Power BI, puedo responder preguntas sobre los datos que tengo.
+
+Para empezar, puedo mostrarte qué tablas de datos están disponibles. Así podrás ver qué tipo de información puedo darte.
+
+¿Te gustaría que te muestre las tablas disponibles?"
+api,3,3,0,error del agente (límite de pasos),
+api,4,3,1,,Hay 88958 partidos en la base de datos.
+api,5,3,1,,Lionel Messi ha marcado 458 goles.
+api,6,3,1,,La asistencia media a los partidos de LaLiga es de 28002.16.
+api,7,3,1,,"Se marcan más goles jugando en casa. Se han marcado 142.043 goles en casa, mientras que se han marcado 118.180 goles fuera."
+api,8,3,1,,"La asistencia media de la temporada 2022 fue de 20.207,83, mientras que la de la temporada 2023 fue de 20.809,95. Esto indica un ligero aumento en la asistencia media de 2022 a 2023."
+api,9,3,1,,"Los 10 jugadores con más goles son:
+
+1.  Robert Lewandowski: 528 goles
+2.  Lionel Messi: 458 goles
+3.  Cristiano Ronaldo: 434 goles
+4.  Harry Kane: 414 goles
+5.  Luis Suárez: 350 goles
+6.  Kylian Mbappé: 330 goles
+7.  Mohamed Salah: 309 goles
+8.  Pierre-Emerick Aubameyang: 308 goles
+9.  Ciro Immobile: 273 goles
+10. Romelu Lukaku: 272 goles"
+api,10,3,1,,"Los 5 estadios con mayor asistencia media son:
+
+1.  **Lusail Stadium**: 87,026.67
+2.  **Mâs Monumental**: 85,018.0
+3.  **FNB-Stadium**: 83,855.25
+4.  **Empower Field at Mile High**: 75,824.0
+5.  **Los Angeles Memorial Coliseum**: 75,637.0"
+api,11,3,1,,"El valor de mercado medio ha evolucionado de la siguiente manera a lo largo de los años:
+
+*   **2000**: 150.000,0 €
+*   **2001**: 100.000,0 €
+*   **2003**: 650.000,0 €
+*   **2004**: 2.048.546,64 €
+*   **2005**: 2.572.382,12 €
+*   **2006**: 2.392.749,72 €
+*   **2007**: 2.328.274,52 €
+*   **2008**: 2.273.701,56 €
+*   **2009**: 2.271.658,66 €
+*   **2010**: 2.213.568,32 €
+*   **2011**: 2.019.566,00 €
+*   **2012**: 1.930.775,08 €
+*   **2013**: 1.901.797,00 €
+*   **2014**: 1.792.280,97 €
+*   **2015**: 1.697.561,60 €
+*   **2016**: 1.732.431,39 €
+*   **2017**: 1.836.578,24 €
+*   **2018**: 2.658.393,68 €
+*   **2019**: 2.327.907,92 €
+*   **2020**: 2.298.331,15 €
+*   **2021**: 2.206.414,69 €
+*   **2022**: 1.970.480,16 €
+*   **2023**: 2.259.024,85 €
+*   **2024**: 2.904.352,30 €
+*   **2025**: 3.155.220,31 €
+*   **2026**: 3.642.170,06 €
+
+Se observa una tendencia general al alza en el valor de mercado medio, con fluctuaciones a lo largo de los años. Los valores más altos se registran en los años más recientes."
+api,12,3,0,19.207 goles en vez de 13.726,En 2023 se marcaron 19207 goles.
+api,13,3,1,,El club que ha utilizado más jugadores distintos es Genoa CFC.
+api,14,3,1,trata 'Missing' como posición (trampa no superada),"Un jugador puede tener las siguientes posiciones: Attack (Delantero), Goalkeeper (Portero), Defender (Defensa), Midfield (Centrocampista) o Missing (Desconocido)."
+api,15,3,1,,"Los jugadores con el valor de mercado más alto son Lamine Yamal y Erling Haaland, ambos con un valor de 200.000.000 €."
+api,16,3,1,,La medida goals_per_game se calcula dividiendo la medida [goals] por la medida [games_played].
+api,17,3,0,error del agente (límite de pasos),
+api,18,3,1,,"Lo siento, no puedo predecir el futuro. Solo puedo responder preguntas sobre los datos que tengo."
+api,19,3,1,,"Lo siento, no tengo la capacidad de borrar datos. Solamente puedo consultar la base de datos."

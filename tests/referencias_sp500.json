@@ -1,0 +1,362 @@
+{
+ "consultas": {
+  "rangos_fechas": {
+   "dax": "EVALUATE ROW(\"idx_min\", MIN(sp500_index[Date]), \"idx_max\", MAX(sp500_index[Date]), \"stk_min\", MIN(sp500_stocks[Date]), \"stk_max\", MAX(sp500_stocks[Date]), \"cal_min\", MIN(dim_date[Date]), \"cal_max\", MAX(dim_date[Date]))",
+   "ok": true,
+   "rows": [
+    {
+     "[idx_min]": "2014-12-22T00:00:00",
+     "[idx_max]": "2024-12-20T00:00:00",
+     "[stk_min]": "2010-01-04T00:00:00",
+     "[stk_max]": "2024-12-20T00:00:00",
+     "[cal_min]": "2010-01-04T00:00:00",
+     "[cal_max]": "2024-12-20T00:00:00"
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "3": {
+   "dax": "EVALUATE ROW(\"v\", [total_market_cap])",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 55582530223616.0
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "4": {
+   "dax": "EVALUATE ROW(\"filas_companies\", COUNTROWS(sp500_companies), \"medida\", [companies_count], \"simbolos_en_stocks\", DISTINCTCOUNT(sp500_stocks[Symbol]))",
+   "ok": true,
+   "rows": [
+    {
+     "[filas_companies]": 502,
+     "[medida]": 502,
+     "[simbolos_en_stocks]": 172
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "5": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([total_market_cap], sp500_companies[Symbol] = \"AAPL\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 3846819807232.0
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "5_comprobar_nombre": {
+   "dax": "EVALUATE FILTER(SELECTCOLUMNS(sp500_companies, \"symbol\", sp500_companies[Symbol], \"short\", sp500_companies[Shortname]), CONTAINSSTRING([short], \"Apple\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[symbol]": "AAPL",
+     "[short]": "Apple Inc."
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "6": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([avg_close], sp500_companies[Sector] = \"Technology\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 65.27686837911797
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "7": {
+   "dax": "EVALUATE ROW(\"tecnologia\", CALCULATE([total_market_cap], sp500_companies[Sector] = \"Technology\"), \"salud\", CALCULATE([total_market_cap], sp500_companies[Sector] = \"Healthcare\"))",
+   "ok": true,
+   "rows": [
+    {
+     "[tecnologia]": 17287013398528.0,
+     "[salud]": 5190430794752.0
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "8": {
+   "dax": "EVALUATE ROW(\"y2023\", CALCULATE([index_value], dim_date[Year] = 2023), \"y2024\", CALCULATE([index_value], dim_date[Year] = 2024))",
+   "ok": true,
+   "rows": [
+    {
+     "[y2023]": 4283.72944,
+     "[y2024]": 5415.057479674796
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "9": {
+   "dax": "EVALUATE TOPN(10, SUMMARIZECOLUMNS(sp500_companies[Shortname], \"m\", [total_market_cap]), [m], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "sp500_companies[Shortname]": "Walmart Inc.",
+     "[m]": 740999888896.0
+    },
+    {
+     "sp500_companies[Shortname]": "Berkshire Hathaway Inc. New",
+     "[m]": 978776031232.0
+    },
+    {
+     "sp500_companies[Shortname]": "Meta Platforms, Inc.",
+     "[m]": 1477457739776.0
+    },
+    {
+     "sp500_companies[Shortname]": "Tesla, Inc.",
+     "[m]": 1351627833344.0
+    },
+    {
+     "sp500_companies[Shortname]": "Broadcom Inc.",
+     "[m]": 1031217348608.0
+    },
+    {
+     "sp500_companies[Shortname]": "NVIDIA Corporation",
+     "[m]": 3298803056640.0
+    },
+    {
+     "sp500_companies[Shortname]": "Amazon.com, Inc.",
+     "[m]": 2365033807872.0
+    },
+    {
+     "sp500_companies[Shortname]": "Apple Inc.",
+     "[m]": 3846819807232.0
+    },
+    {
+     "sp500_companies[Shortname]": "Microsoft Corporation",
+     "[m]": 3246068596736.0
+    },
+    {
+     "sp500_companies[Shortname]": "Alphabet Inc.",
+     "[m]": 4703248187392.0
+    }
+   ],
+   "row_count": 10,
+   "truncated": false
+  },
+  "10": {
+   "dax": "EVALUATE TOPN(5, SUMMARIZECOLUMNS(sp500_companies[Sector], \"n\", [companies_count]), [n], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "sp500_companies[Sector]": "Consumer Cyclical",
+     "[n]": 55
+    },
+    {
+     "sp500_companies[Sector]": "Healthcare",
+     "[n]": 62
+    },
+    {
+     "sp500_companies[Sector]": "Industrials",
+     "[n]": 70
+    },
+    {
+     "sp500_companies[Sector]": "Technology",
+     "[n]": 82
+    },
+    {
+     "sp500_companies[Sector]": "Financial Services",
+     "[n]": 67
+    }
+   ],
+   "row_count": 5,
+   "truncated": false
+  },
+  "11": {
+   "dax": "EVALUATE SUMMARIZECOLUMNS(dim_date[Year], \"media\", [index_value], \"dias\", COUNTROWS(sp500_index))",
+   "ok": true,
+   "rows": [
+    {
+     "dim_date[Year]": 2014,
+     "[media]": 2080.1685714285713,
+     "[dias]": 7
+    },
+    {
+     "dim_date[Year]": 2015,
+     "[media]": 2061.067738095238,
+     "[dias]": 252
+    },
+    {
+     "dim_date[Year]": 2016,
+     "[media]": 2094.6513095238097,
+     "[dias]": 252
+    },
+    {
+     "dim_date[Year]": 2017,
+     "[media]": 2449.076374501992,
+     "[dias]": 251
+    },
+    {
+     "dim_date[Year]": 2018,
+     "[media]": 2746.2140239043824,
+     "[dias]": 251
+    },
+    {
+     "dim_date[Year]": 2019,
+     "[media]": 2913.3605555555555,
+     "[dias]": 252
+    },
+    {
+     "dim_date[Year]": 2020,
+     "[media]": 3217.8564822134385,
+     "[dias]": 253
+    },
+    {
+     "dim_date[Year]": 2021,
+     "[media]": 4273.406626984127,
+     "[dias]": 252
+    },
+    {
+     "dim_date[Year]": 2022,
+     "[media]": 4098.514741035857,
+     "[dias]": 251
+    },
+    {
+     "dim_date[Year]": 2023,
+     "[media]": 4283.72944,
+     "[dias]": 250
+    },
+    {
+     "dim_date[Year]": 2024,
+     "[media]": 5415.057479674796,
+     "[dias]": 246
+    }
+   ],
+   "row_count": 11,
+   "truncated": false
+  },
+  "12_dim_date": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([total_volume], dim_date[Year] = 2023))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 353464048966
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "12_stocks": {
+   "dax": "EVALUATE ROW(\"v\", CALCULATE([total_volume], FILTER(sp500_stocks, YEAR(sp500_stocks[Date]) = 2023)))",
+   "ok": true,
+   "rows": [
+    {
+     "[v]": 353464048966
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "13": {
+   "dax": "EVALUATE TOPN(3, SUMMARIZECOLUMNS(sp500_companies[Sector], \"v\", [total_volume]), [v], DESC)",
+   "ok": true,
+   "rows": [
+    {
+     "sp500_companies[Sector]": "Communication Services",
+     "[v]": 709330980325
+    },
+    {
+     "sp500_companies[Sector]": "Technology",
+     "[v]": 2592246292445
+    },
+    {
+     "sp500_companies[Sector]": "Consumer Cyclical",
+     "[v]": 946669633979
+    }
+   ],
+   "row_count": 3,
+   "truncated": false
+  },
+  "13_huerfanos": {
+   "dax": "EVALUATE ROW(\"simbolos_sin_empresa\", COUNTROWS(EXCEPT(VALUES(sp500_stocks[Symbol]), VALUES(sp500_companies[Symbol]))))",
+   "ok": true,
+   "rows": [
+    {
+     "[simbolos_sin_empresa]": null
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "14": {
+   "dax": "EVALUATE DISTINCT(sp500_companies[Sector])",
+   "ok": true,
+   "rows": [
+    {
+     "sp500_companies[Sector]": "Technology"
+    },
+    {
+     "sp500_companies[Sector]": "Consumer Cyclical"
+    },
+    {
+     "sp500_companies[Sector]": "Communication Services"
+    },
+    {
+     "sp500_companies[Sector]": "Financial Services"
+    },
+    {
+     "sp500_companies[Sector]": "Consumer Defensive"
+    },
+    {
+     "sp500_companies[Sector]": "Healthcare"
+    },
+    {
+     "sp500_companies[Sector]": "Energy"
+    },
+    {
+     "sp500_companies[Sector]": "Basic Materials"
+    },
+    {
+     "sp500_companies[Sector]": "Industrials"
+    },
+    {
+     "sp500_companies[Sector]": "Utilities"
+    },
+    {
+     "sp500_companies[Sector]": "Real Estate"
+    }
+   ],
+   "row_count": 11,
+   "truncated": false
+  },
+  "15": {
+   "dax": "EVALUATE ROW(\"ultima_fecha\", MAX(sp500_index[Date]), \"ultimo_valor\", LASTNONBLANKVALUE(sp500_index[Date], SUM(sp500_index[S&P500])), \"media_index_value\", [index_value])",
+   "ok": true,
+   "rows": [
+    {
+     "[ultima_fecha]": "2024-12-20T00:00:00",
+     "[ultimo_valor]": 5930.85,
+     "[media_index_value]": 3346.351605085419
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  },
+  "contexto_retornos": {
+   "dax": "EVALUATE ROW(\"first_close\", [first_close], \"last_close\", [last_close], \"price_return\", [price_return], \"avg_company_return\", [avg_company_return])",
+   "ok": true,
+   "rows": [
+    {
+     "[first_close]": 30.98144401391347,
+     "[last_close]": 176.58813910151636,
+     "[price_return]": 4.699803373342196,
+     "[avg_company_return]": 12.667930541735826
+    }
+   ],
+   "row_count": 1,
+   "truncated": false
+  }
+ }
+}
